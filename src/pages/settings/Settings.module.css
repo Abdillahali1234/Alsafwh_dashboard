@@ -1,0 +1,56 @@
+.inputLang:focus {
+  box-shadow: none;
+}
+
+.lightMode,
+.darkMode {
+  border: 1px solid #0000001f;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.lightMode {
+  color: black;
+}
+
+.darkMode {
+  color: white;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 4px 12px;
+}
+
+.formBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.darkModeBox {
+  margin-bottom: 10;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.withContainer{
+  width: 100%;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+@media (max-width:768px) {
+  .withContainer{
+    width:auto;
+  /* width: 100%; */
+
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+
+
+  }
+
+  
+  
+}

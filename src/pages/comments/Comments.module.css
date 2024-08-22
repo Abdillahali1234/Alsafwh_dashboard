@@ -1,0 +1,23 @@
+
+.viewDetails{
+    margin-top: 30px;
+    padding: 5px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    color: white;
+    background-color: rgb(62,83,160);
+    border-radius: 20px;
+    display: inline-block;
+}
+
+
+@media (max-width:768px) {
+
+
+    .newSubs{
+        margin-right:20px ;
+            margin-left:20px ;
+    }
+    
+}

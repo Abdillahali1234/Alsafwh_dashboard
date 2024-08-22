@@ -1,0 +1,163 @@
+.parent{
+    margin-top: 80px;
+}
+
+.viewDetails{
+    margin-top: 30px;
+    padding: 5px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    color: white;
+    background-color: rgb(62,83,160);
+    border-radius: 20px;
+    display: inline-block;
+}
+
+@media (max-width:1250px) {
+    
+    .parent{
+            margin-right:20px ;
+            margin-left:20px ;
+    }
+    
+}
+
+
+@media (max-width:768px) {
+    
+    .parent{
+        margin-top: 50px;
+            margin-right:0px ;
+            margin-left:0px ;
+    }
+
+    .newSubs{
+        margin-right:20px ;
+            margin-left:20px ;
+    }
+    
+}
+
+.lineTwoH{
+display: none;
+}
+
+.lineOneH{
+    display: none;
+}
+
+@media (max-width:1177px) {
+   .lineTwo{
+    visibility: hidden;
+   }
+   .lineTwoH{
+    display: inherit;
+    }
+}
+
+
+@media (max-width:843px) {
+    .lineOne{
+     visibility: hidden;
+    }
+    .lineOneH{
+        display: inherit;
+    }
+ }
+
+ 
+@media (max-width:768px) {
+    .lineOne{
+     visibility: inherit;
+    }
+    .lineOneH{
+        display: none;
+    }
+ }
+
+ @media (max-width:608px) {
+    
+    .lineOne{
+        visibility: hidden;
+    }
+
+    .lineOneH{
+        display: inherit;
+    }
+ }
+
+ @media (max-width:559px) {
+    
+    .lineOne{
+        display: none;
+    }
+    .lineTwo{
+        display: none;
+    }
+     
+ }
+ 
+ 
+
+ .lineTwoHEn{
+    display: none;
+    }
+    
+    .lineOneHEn{
+        display: none;
+    }
+
+
+    
+    @media (max-width:1250px) {
+       .lineTwoEn{
+        visibility: hidden;
+       }
+       .lineTwoHEn{
+        display: inherit;
+        }
+    }
+    
+    
+    @media (max-width:955px) {
+        .lineOneEn{
+         visibility: hidden;
+        }
+        .lineOneHEn{
+            display: inherit;
+        }
+     }
+    
+     
+    @media (max-width:768px) {
+        .lineOneEn{
+         visibility: inherit;
+        }
+        .lineOneHEn{
+            display: none;
+        }
+     }
+    
+     @media (max-width:720px) {
+        
+        .lineOneEn{
+            visibility: hidden;
+        }
+    
+        .lineOneHEn{
+            display: inherit;
+        }
+     }
+    
+     @media (max-width:559px) {
+        
+        .lineOneEn{
+            display: none;
+        }
+        .lineTwoEn{
+            display: none;
+        }
+         
+     }
+     

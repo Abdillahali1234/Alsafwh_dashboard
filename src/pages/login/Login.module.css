@@ -1,0 +1,55 @@
+.parent{
+    background-image: url("../../assets/Alsafwa/photo_2024-08-19_00-52-32.jpg");
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.styleForm{
+    /* width: 100%; */
+    width: fit-content;
+    display: grid;
+    justify-items: center;
+    background-color: rgba(240, 248, 255, 0.053);
+    backdrop-filter: blur(6px);
+    border-radius:20px;
+    border:1px solid rgba(240, 248, 255, 0.093);
+    padding: 20px 30px;
+}
+
+.labelInput{
+    color:  white;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.forgetPassword{
+    text-decoration: none;
+    color: white;
+    margin-top: 10px;
+    font-size: 12px;
+
+}
+
+.inputFiled{
+    margin-bottom: 10px;
+    margin-top: 5px;
+    outline: none;
+    padding: 5px 5px ;
+    border-radius: 6px;
+    border: 0px;
+    /* width: 100%; */
+    width: 260px;
+}
+
+@media (max-width:350px) {
+    
+    .inputFiled{
+        width: 100%;
+    }
+
+    .styleForm{
+        padding: 20px ;
+    }
+}

@@ -1,0 +1,71 @@
+.containerTable{
+    overflow-x: scroll;
+    overflow-y: scroll;
+    height: 750px;
+    padding-left: 5px;
+    width: 100%;
+
+    margin: 100px 50px;
+}
+
+
+
+.containerTable::-webkit-scrollbar{
+    width: 5px;
+}
+
+.containerTable::-webkit-scrollbar-thumb{
+    background-color: rgb(62,83,160);
+    border-radius: 50px;
+}
+
+.containerTable::-webkit-scrollbar-thumb:hover{
+    background-color: rgb(62,83,160);
+    border-radius: 50px;
+}
+
+.table{
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+.table::-webkit-scrollbar{
+    width: 5px;
+}
+
+.table::-webkit-scrollbar-thumb{
+    background-color: rgb(62,83,160);
+    border-radius: 50px;
+}
+
+.table::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(62,83,160);
+    border-radius: 50px;
+  }
+
+  .deleteStudent{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: rgb(230, 139, 139);
+    border-radius: 10px;
+    width: fit-content;
+    padding: 5px 20px ;
+    margin-bottom: 50px;
+  }
+
+  .deleteStudent:hover{
+    background-color: rgb(224, 80, 80);
+  }
+
+
+  @media (max-width:768px) {
+    .containerTable{
+        margin: 50px 20px;
+        width: auto;
+  }
+}
+
+
+

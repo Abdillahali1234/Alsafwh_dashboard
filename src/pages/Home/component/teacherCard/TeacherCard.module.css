@@ -1,0 +1,31 @@
+.teacherBox{
+    padding: 15px 15px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.teacherBoxDark{
+    padding: 15px 15px;
+    border-radius: 15px;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 4px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.viewAllTeacher{
+    text-decoration: none;
+    color:rgb(136,149,193);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.viewAllTeacherDark{
+    text-decoration: none;
+    color:white;
+    font-size: 13px;
+    font-weight: 500;
+}

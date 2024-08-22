@@ -1,0 +1,67 @@
+.parent{
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-top: 80px;
+}
+
+.containerImage{
+    margin-bottom: 10px;
+    height: 150px;
+    width: 100%;
+    padding-top: 20px;
+    background-color:rgb(124,92,185) ;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerCourses{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+}
+
+ .coursesLink , .subscriptions{
+    text-decoration: none;
+    color: white;
+    background-color: rgb(62,83,160);
+    padding: 5px 50px;
+    border-radius: 5px;
+}
+.coursesLink {
+    opacity: 0.5;
+}
+
+@media (max-width:840px) {
+    .containerCourses{
+       justify-content: center;
+    }
+    
+}
+
+@media (max-width:768px) {
+    .containerCourses{
+       justify-content: inherit;
+    }
+    
+}
+
+@media (max-width:605px) {
+    .containerCourses{
+       justify-content: center;
+    }
+    
+}
+
+@media (max-width:750px) {
+    .header{
+        margin-left: 20px;
+    }
+    .parent{
+        margin-top: 50px;
+    }
+    
+}

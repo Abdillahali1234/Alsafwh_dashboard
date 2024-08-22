@@ -1,0 +1,47 @@
+.parent{
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-top: 80px;
+}
+
+
+.containerComments{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.commentData{
+    width: 40%;
+    border-radius: 6px;
+}
+
+
+@media (max-width:750px) {
+
+    .parent{
+        margin-top: 50px;
+    }
+}
+
+@media (max-width:1000px) {
+
+    .commentData{
+        width: 100%;
+    }
+}
+
+@media (max-width:768px) {
+
+}
+
+@media (max-width:560px) {
+    .containerComments{
+        display: grid;
+
+    }
+    .commentData{
+        width: 100%;
+    }
+}

@@ -1,0 +1,81 @@
+.parent{
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-top: 80px;
+}
+
+.data{
+    font-weight: 400;
+    font-size: 17px;
+    color: black;
+}
+
+.studentData{
+    margin-bottom: 20px;
+    color:rgb(34, 166,241);
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.containerStudentData{
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.containerImage{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.header{
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.addSubscription , .coursesLink , .subscriptions{
+    text-decoration: none;
+    color: white;
+    background-color:rgb(34, 166,241) ;
+    padding: 5px 50px;
+    border-radius: 5px;
+}
+
+.coursesLink , .subscriptions{
+    background-color: rgb(62,83,160);
+}
+
+
+@media (max-width:750px) {
+    .header{
+        margin-left: 20px;
+    }
+
+    .containerImage{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .containerStudentData{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .parent{
+        margin-top: 50px;
+    }
+    
+}

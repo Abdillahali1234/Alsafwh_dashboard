@@ -1,0 +1,48 @@
+.headerCard {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 10px 15px;
+  height: 70%;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 15px;
+}
+
+.headerCardDark{
+
+}
+
+
+.imageHeader {
+  height: 250px;
+  width: 300px;
+}
+.showLink {
+  text-decoration: none;
+  color: rgb(64, 123, 255);
+  font-size: small;
+  font-weight: 400;
+}
+
+@media (max-width: 940px) {
+  .headerCard {
+    height: fit-content;
+    justify-content: center;
+  }
+  
+}
+
+@media (max-width: 899px) {
+  .headerCard {
+    height: fit-content;
+    justify-content: center;
+  }
+  .imageHeader {
+    height: 250px;
+    width: 100%;
+  }
+}
+
+

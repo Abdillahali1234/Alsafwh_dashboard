@@ -1,0 +1,50 @@
+.visitCard{
+        padding: 10px 15px;
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        display: grid;
+        row-gap: 2rem;
+        grid-template-columns:repeat(2,auto) ;
+}
+.visitCardDark{
+        padding: 10px 15px;
+        border-radius: 15px;
+        box-shadow: rgba(255, 255, 255, 0.1) 0px 4px 12px;
+        display: grid;
+        row-gap: 2rem;
+        grid-template-columns:repeat(2,auto) ;
+}
+
+@media (max-width:1025px) {
+        .visitCard{
+        display: flex;
+        flex-wrap: wrap;
+        grid-template-columns:none ;
+}
+
+.visitCardDark{
+        display: flex;
+        flex-wrap: wrap;
+        grid-template-columns:none ;
+}
+
+}
+
+
+@media (max-width:965px) {
+        .visitCard{
+        display: flex;
+        flex-wrap: wrap;
+        grid-template-columns:none ;
+        justify-content: center;
+}
+
+.visitCardDark{
+        display: flex;
+        flex-wrap: wrap;
+        grid-template-columns:none ;
+        justify-content: center;
+}
+
+}
+

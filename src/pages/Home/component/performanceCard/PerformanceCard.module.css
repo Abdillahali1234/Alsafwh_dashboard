@@ -1,0 +1,24 @@
+.performance{
+    padding: 10px 15px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+}
+
+.allCoursesLink , .allCoursesLinkDark{
+    text-decoration: none;
+    border-radius: 50px;
+    color: rgb(64,123,255);
+    font-size: smaller;
+    padding: 5px 10px;
+    text-align: center;
+}
+.allCoursesLink{
+    border: 1px solid rgba(0, 0, 0, 0.329);
+    
+}
+
+.allCoursesLinkDark{
+    border: 1px solid rgba(255, 255, 255, 0.76);
+
+}

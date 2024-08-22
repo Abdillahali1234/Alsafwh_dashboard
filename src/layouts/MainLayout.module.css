@@ -1,0 +1,17 @@
+.MainLayoutStyle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.parent{
+  display: flex;
+}
+
+@media (max-width:768px) {
+
+  .parent{
+  display: grid;
+}
+}

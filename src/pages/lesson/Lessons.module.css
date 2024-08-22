@@ -1,0 +1,122 @@
+.containerLesson {
+  margin: 100px 50px 50px 50px;
+}
+
+.addLesson {
+  text-decoration: none;
+  color: white;
+  background-color: rgb(34, 139, 230);
+  padding: 5px 45px;
+  font-size: 18px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.styleBoxLesson {
+  margin-top: 50px;
+}
+
+.number {
+  color: rgb(141, 205, 241);
+  font-weight: 300;
+  font-size: 40px;
+}
+
+.title {
+  color: rgb(155, 155, 155);
+  font-weight: 400;
+  font-size: 25px;
+}
+
+.lesson:hover {
+  cursor: pointer;
+  .title {
+    color: rgb(0, 0, 0);
+  }
+  .number {
+    color: rgb(75, 181, 241);
+  }
+}
+
+.lesson {
+  .number {
+    color: rgb(141, 205, 241);
+  }
+
+  .title {
+    color: rgb(155, 155, 155);
+  }
+
+  &[data-active] {
+    .title {
+      color: rgb(0, 0, 0);
+    }
+    .number {
+      color: rgb(75, 181, 241);
+    }
+  }
+}
+
+.lessonDark:hover {
+  cursor: pointer;
+
+  .title {
+    color: rgb(255, 255, 255);
+  }
+  .number {
+    color: rgb(75, 181, 241);
+  }
+  
+}
+
+.lessonDark {
+  cursor: pointer;
+  .title {
+    color: rgb(255, 255, 255);
+  }
+  .number {
+    color: rgb(75, 181, 241);
+  }
+  &[data-active] {
+    .title {
+      color: rgb(255, 255, 255);
+    }
+    .number {
+      color: rgb(75, 181, 241);
+    }
+  }
+}
+
+@media (max-width: 999px) {
+  .styleBoxLesson {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .containerLesson {
+    margin: 50px 50px 100px 20px;
+  }
+
+  .styleBoxLesson {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 550px) {
+  .lesson {
+    padding: 5px 15px;
+  }
+  .number {
+    font-weight: 400;
+    font-size: 20px;
+  }
+  .title {
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  .containerLesson {
+    margin-right: 10px;
+  }
+}

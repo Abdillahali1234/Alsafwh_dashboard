@@ -1,0 +1,47 @@
+.inputField{
+    width: 100%;
+    outline: none;
+    border: 0px;
+    border-radius:6px ;
+    padding: 5px ;
+}
+
+.inputField:focus{
+    box-shadow: rgba(125, 200, 244, 0.712) 0px 4px 12px;}
+
+.labelField{
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.parent{
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.containerFormLight{
+    background-color: rgb(178,185,212);
+    ;
+}
+
+.containerFormDark{
+color: aliceblue;
+    box-shadow: rgba(255, 254, 254, 0.2) 0px 2px 8px 0px;
+}
+
+@media (max-width:768px) {
+    .parent{
+        padding-right: 0px;
+    padding-left: 0px;
+
+    }
+    
+}
+
+@media (max-width:450px) {
+  
+    
+    .containerDepartment{
+        flex-wrap: wrap;
+    }
+}

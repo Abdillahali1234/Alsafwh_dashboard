@@ -1,0 +1,72 @@
+.parent{
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-top: 80px;
+}
+.header{
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.add , .coursesLink , .subscriptions{
+    text-decoration: none;
+    color: white;
+    background-color:rgb(34, 166,241) ;
+    padding: 5px 50px;
+    border-radius: 5px;
+}
+
+.coursesLink , .subscriptions{
+    background-color: rgb(62,83,160);
+}
+
+.labelField{
+    font-weight: 700;
+    font-size: 21px;
+
+}
+.selectField{
+    /* background-color: ; */
+    width: 280px;
+    margin-top: 10px;
+    outline: none;
+    border: 0px;
+    border-radius: 6px;
+    padding: 10px 10px;
+}
+
+.containerForm{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+@media (max-width:1000px) {
+   
+    .containerForm{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+}
+
+@media (max-width:750px) {
+    .header{
+        margin-left: 20px;
+    }
+    .parent{
+        margin-top: 50px;
+    }
+    
+}
+
+@media (max-width:390px) {
+    .selectField{
+        width: auto;
+    }
+    
+    
+}
