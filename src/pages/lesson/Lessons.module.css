@@ -11,7 +11,12 @@
   border-radius: 4px;
   font-weight: 600;
 }
-
+.StyleNotFound{
+  font-size: 30px;
+  color: rgb(34, 139, 230);
+  text-align: center;
+  width: 100%;
+}
 .styleBoxLesson {
   margin-top: 50px;
 }

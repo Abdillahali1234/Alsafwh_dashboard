@@ -17,7 +17,6 @@ import {
   IconUser,
 } from "@tabler/icons-react";
 import { Form } from "react-router-dom";
-import { Formik } from "Formik";
 import classes from "./AddAssistant.module.css";
 
 export default function AddAssistant() {
@@ -63,17 +62,17 @@ export default function AddAssistant() {
         style={{ borderRadius: "20px" }}
       >
         <Container pt={20} pb={20}>
-          <Formik
-            initialValues={{
-              firstName: "",
-              lastName: "",
-              email: "",
-              phone: "",
-              password: "",
-              confirmPassword: "",
-            }}
-            validationSchema={""}
-            onSubmit={handelSubmit}
+          <form
+            // initialValues={{
+            //   firstName: "",
+            //   lastName: "",
+            //   email: "",
+            //   phone: "",
+            //   password: "",
+            //   confirmPassword: "",
+            // }}
+            // validationSchema={""}
+            // onSubmit={handelSubmit}
           >
             <Form>
               <Box className={classes.containerField} mb={5}>
@@ -298,7 +297,7 @@ export default function AddAssistant() {
                 </Button>
               </Box>
             </Form>
-          </Formik>
+          </form>
         </Container>
       </Box>
     </Box>

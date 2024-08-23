@@ -1,9 +1,13 @@
 .parent{
     background-image: url("../../assets/Alsafwa/photo_2024-08-19_00-52-32.jpg");
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
+}
+.error {
+  color: red;
+  font-size: 12px;
 }
 
 .styleForm{

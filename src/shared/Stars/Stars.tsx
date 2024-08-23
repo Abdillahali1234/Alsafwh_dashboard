@@ -1,16 +1,31 @@
 import { Box } from "@mantine/core";
 import { IconStarFilled, IconStarHalfFilled } from "@tabler/icons-react";
 
-export default function Stars() {
-  const stars = (
+export default function Stars({ num }: { num: number }) {
+  const fullStars = Math.floor(num); 
+  const hasHalfStar = num % 1 !== 0; 
+
+  const starsArray = [];
+  if (hasHalfStar) {
+    starsArray.push(
+      <IconStarHalfFilled
+        key="half"
+        style={{ width: "20px", height: "20px" }}
+      />
+    );
+  }
+  for (let i = 0; i < fullStars; i++) {
+    starsArray.push(
+      <IconStarFilled
+        key={`full-${i}`}
+        style={{ width: "20px", height: "20px" }}
+      />
+    );
+  }
+
+  return (
     <Box display={"flex"} style={{ gap: "5px" }} c={"yellow"} mt={10} mb={3}>
-      <IconStarHalfFilled style={{ width: "20px", height: "20px" }} />
-      <IconStarFilled style={{ width: "20px", height: "20px" }} />
-      <IconStarFilled style={{ width: "20px", height: "20px" }} />
-      <IconStarFilled style={{ width: "20px", height: "20px" }} />
-      <IconStarFilled style={{ width: "20px", height: "20px" }} />
+      {starsArray}
     </Box>
   );
-
-  return <div>{stars}</div>;
 }

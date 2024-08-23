@@ -3,6 +3,13 @@
     padding-left: 30px;
     margin-top: 80px;
 }
+
+.StyleNotFound{
+  font-size: 30px;
+  color: rgb(34, 139, 230);
+  text-align: center;
+  width: 100%;
+}
 .header{
     margin-left: 50px;
     display: flex;

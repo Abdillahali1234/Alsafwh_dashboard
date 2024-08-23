@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Cookies } from "react-cookie";
+import { toast } from "react-toastify";
 
 const cookies = new Cookies();
 
@@ -9,7 +10,7 @@ export const Api = axios.create({
 });
 
 Api.interceptors.request.use((config) => {
-  const authModel = cookies.get("authModel");
+  const authModel = cookies.get("authModelAdmin");
 
   if (authModel?.token) {
     config.headers.Authorization = `Bearer ${authModel.token}`;
@@ -39,16 +40,16 @@ Api.interceptors.response.use(
           }
         );
 
-        const authModel = cookies.get("authModel") || {};
+        const authModel = cookies.get("authModelAdmin") || {};
         authModel.token = data.token;
         authModel.refreshTokenExpiresOn = data.refreshTokenExpiresOn;
 
-        cookies.set("authModel", authModel, {
+        cookies.set("authModelAdmin", authModel, {
           path: "/",
           expires: new Date(authModel.refreshTokenExpiresOn),
         });
 
-        cookies.set("refreshToken", data.refreshToken, {
+        cookies.set("refreshTokenAdmin", data.refreshToken, {
           path: "/",
           expires: new Date(data.refreshTokenExpiresOn),
         });
@@ -56,7 +57,10 @@ Api.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${data.token}`;
         return Api(originalRequest);
       } catch (refreshError) {
-        console.error("Error refreshing token:", refreshError);
+        cookies.remove("authModelAdmin");
+        cookies.remove("refreshTokenAdmin");
+        window.location.href = "/login";
+        toast.warn("انتهت صلاحيه الجلسه من فضلك سجل الدخول من الاول");
         return Promise.reject(refreshError);
       }
     }

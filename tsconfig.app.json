@@ -23,10 +23,8 @@
       "@pages/*": ["src/pages/*"],
       "@routes/*": ["src/routes/*"],
       "@store/*": ["src/store/*"],
-      "@styles/*": ["src/styles/*"],
       "@layouts/*": ["src/layouts/*"],
       "@utilities/*": ["src/utilities/*"],
-      "@images/*": ["src/images/*"],
       "@helmets/*":["src/helmets/*"],
       "@schemas/*":["src/schemas/*"],
       "@shared/*":["src/shared/*"]

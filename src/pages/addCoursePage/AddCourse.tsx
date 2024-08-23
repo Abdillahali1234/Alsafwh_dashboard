@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Container,
-  FileInput,
   Modal,
   Text,
   useComputedColorScheme,
@@ -13,15 +12,30 @@ import {
   IconAlignJustified,
   IconCaretLeftFilled,
   IconCaretRightFilled,
-  IconFile,
   IconSchool,
   IconUser,
 } from "@tabler/icons-react";
-import { Form } from "react-router-dom";
-import { Formik } from "Formik";
+import { useFormik } from "formik";
 import AddCourseSchema from "./schema/AddCourseSchema";
 import { useDisclosure } from "@mantine/hooks";
 import Ok from "@assets/Alsafwa/Ok.jpeg";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@store/Store";
+import { useEffect } from "react";
+import { GetAllYears } from "@store/api/YearApi";
+import { GetAllSubjectApi } from "@store/api/SubjectApi";
+import { GetAllTeacherApi } from "@store/api/TeacherApi";
+import { AddCourseApi } from "@store/api/CourseApi";
+// [Required, RegularExpression("ادبي|علمي|علم رياضه|علم علوم|مشتركه")];
+
+const branchs = [
+  "ادبي",
+  "علمي",
+  "علم رياضه",
+  "علم علوم",
+  "مشتركه",
+  "خارج التخصص",
+];
 
 export default function AddCourse() {
   const computedColorScheme = useComputedColorScheme("light", {
@@ -31,14 +45,59 @@ export default function AddCourse() {
 
   const [opened, { open, close }] = useDisclosure(false);
 
-  function handelSubmit() {
-    return open();
-  }
+  const initialValues = {
+    branch: "",
+    yearId: "",
+    Title: "",
+    description: "",
+    imgUrl: "",
+    learningOutcomes: "",
+    evalution: 0,
+    isFree: "",
+    trailerVideo: "",
+    subjectId: "",
+    startDate: new Date().toDateString(),
+    teacherId: 0,
+    price: 0,
+  };
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema: AddCourseSchema,
+    validateOnChange: true,
+    validateOnBlur: true,
+    onSubmit: (values) => {
+      dispatch(
+        AddCourseApi({
+          ...values,
+          isFree: values.isFree == "True" ? true : false,
+        })
+      );
+    },
+  });
+
+  const dispatch = useDispatch<AppDispatch>();
+  const { years } = useSelector((state: RootState) => state.Year);
+  const { subjects } = useSelector((state: RootState) => state.Subject);
+  const { teachers } = useSelector((state: RootState) => state.Teacher);
+  const { isAdded } = useSelector((state: RootState) => state.Course);
+
+  useEffect(() => {
+    if (isAdded) {
+      formik.resetForm();
+    }
+  }, [formik, isAdded]);
+
+  useEffect(() => {
+    dispatch(GetAllYears());
+    dispatch(GetAllSubjectApi());
+    dispatch(GetAllTeacherApi());
+  }, [dispatch]);
 
   return (
     <Box mt={80} mb={50} w={"100%"} className={classes.parent}>
       <Box display={"flex"} style={{ alignItems: "center" }}>
-        {language != "English" ? (
+        {language !== "English" ? (
           <IconCaretLeftFilled
             style={{ width: "30px", height: "30px", color: "rgb(62,83,160)" }}
             stroke={2.0}
@@ -51,103 +110,337 @@ export default function AddCourse() {
         )}
 
         <Text
-          c={computedColorScheme == "light" ? "" : "white"}
+          c={computedColorScheme === "light" ? "" : "white"}
           fw={600}
-          fz={25}
-        >
-          {language != "English" ? "اضافة كورس" : "Add course"}
+          fz={25}>
+          {language !== "English" ? "اضافة كورس" : "Add course"}
         </Text>
       </Box>
-
       <Box
         mt={50}
         mx={20}
         className={
-          computedColorScheme == "light"
+          computedColorScheme === "light"
             ? classes.containerFormLight
             : classes.containerFormDark
         }
-        style={{ borderRadius: "20px" }}
-      >
+        style={{ borderRadius: "20px" }}>
         <Container pt={20} pb={20}>
-          <Formik
-            initialValues={{
-              nameOfCourse: "",
-              nameOfTeacher: "",
-              nameOfMaterial: "",
-              specialty: "",
-              classe: "",
-            }}
-            validationSchema={AddCourseSchema}
-            onSubmit={handelSubmit}
-          >
-            <Form>
-              <Box mb={5}>
+          <form onSubmit={formik.handleSubmit}>
+            <Box mt={20}>
+              <Box
+                mb={10}
+                display={"flex"}
+                style={{ alignItems: "center", gap: "5px" }}>
+                <IconSchool
+                  style={{
+                    color: "rgb(34,166,241)",
+                    width: "30px",
+                    height: "30px",
+                  }}
+                />
+                <label htmlFor="Title" className={classes.labelField}>
+                  {language !== "English" ? "اسم الكورس" : "Name of course"}
+                </label>
+              </Box>
+              <Box>
+                <input
+                  type="text"
+                  id="Title"
+                  placeholder={
+                    language !== "English" ? "اسم الكورس" : "Name of course"
+                  }
+                  name="Title"
+                  value={formik.values.Title}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={classes.inputField}
+                />
+                {formik.touched.Title && formik.errors.Title && (
+                  <Text c={"red"}>{formik.errors.Title}</Text>
+                )}
+              </Box>
+            </Box>
+            <Box mt={20}>
+              <Box
+                mb={10}
+                display={"flex"}
+                style={{ alignItems: "center", gap: "5px" }}>
+                <IconSchool
+                  style={{
+                    color: "rgb(34,166,241)",
+                    width: "30px",
+                    height: "30px",
+                  }}
+                />
+                <label htmlFor="price" className={classes.labelField}>
+                  {language !== "English" ? "سعر الكورس" : "price of course"}
+                </label>
+              </Box>
+              <Box>
+                <input
+                  type="number"
+                  id="price"
+                  placeholder={
+                    language !== "English" ? "سعر الكورس" : "price of course"
+                  }
+                  name="price"
+                  value={formik.values.price}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={classes.inputField}
+                />
+                {formik.touched.price && formik.errors.price && (
+                  <Text c={"red"}>{formik.errors.price}</Text>
+                )}
+              </Box>
+            </Box>
+
+            <Box w={"100%"} mt={20}>
+              <Box
+                mb={10}
+                display={"flex"}
+                style={{ alignItems: "center", gap: "5px" }}>
+                <IconUser
+                  style={{
+                    color: "rgb(34,166,241)",
+                    width: "30px",
+                    height: "30px",
+                  }}
+                />
+                <label htmlFor="teacherId" className={classes.labelField}>
+                  {language !== "English" ? "اسم المعلم" : "Name of teacher"}
+                </label>
+              </Box>
+              <Box>
+                <select
+                  id="teacherId"
+                  name="teacherId"
+                  value={formik.values.teacherId}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={classes.inputField}>
+                  <option value="" disabled hidden>
+                    {language !== "English" ? "المعلم" : "Teahcer"}
+                  </option>
+                  {teachers.map((teacher) => {
+                    return (
+                      <option value={teacher.id} key={teacher.user.id}>
+                        {teacher.user.firstName + " " + teacher.user.lastName}
+                      </option>
+                    );
+                  })}
+                </select>
+                {formik.touched.teacherId && formik.errors.teacherId && (
+                  <Text c={"red"}>{formik.errors.teacherId}</Text>
+                )}
+              </Box>
+            </Box>
+
+            <Box mt={20}>
+              <Box
+                mb={10}
+                display={"flex"}
+                style={{ alignItems: "center", gap: "5px" }}></Box>
+              <Box w={"100%"} mt={20}>
                 <Box
                   mb={10}
                   display={"flex"}
-                  style={{ alignItems: "center", gap: "5px" }}
-                >
-                  <IconSchool
+                  style={{ alignItems: "center", gap: "5px" }}>
+                  <IconAlignJustified
                     style={{
                       color: "rgb(34,166,241)",
                       width: "30px",
                       height: "30px",
                     }}
                   />
-                  <label htmlFor="nameOfCourse" className={classes.labelField}>
-                    {language != "English" ? "اسم الكورس" : "Name of course"}
+                  <label htmlFor="subjectId" className={classes.labelField}>
+                    {language !== "English"
+                      ? "اختر ماده للكورس"
+                      : "Subject To Course"}
                   </label>
                 </Box>
                 <Box>
-                  <input
-                    type="text"
-                    id="nameOfCourse"
-                    placeholder={
-                      language != "English" ? "اسم الكورس" : "Name of course"
-                    }
-                    name="nameOfCourse"
-                    required
-                    className={classes.inputField}
-                  />
+                  <select
+                    id="subjectId"
+                    name="subjectId"
+                    value={formik.values.subjectId}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className={classes.inputField}>
+                    <option value="" disabled hidden>
+                      {language !== "English" ? "الماده" : "subject"}
+                    </option>
+                    {subjects.map((subject) => {
+                      return (
+                        <option key={subject.id} value={subject.id}>
+                          {subject.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                  {formik.touched.subjectId && formik.errors.subjectId && (
+                    <Text c={"red"}>{formik.errors.subjectId}</Text>
+                  )}
                 </Box>
               </Box>
-              <Box mt={20}>
+            </Box>
+            <Box
+              w={"100%"}
+              display={"flex"}
+              style={{ gap: "1rem" }}
+              className={classes.containerDepartment}>
+              <Box w={"100%"} mt={20}>
                 <Box
                   mb={10}
                   display={"flex"}
-                  style={{ alignItems: "center", gap: "5px" }}
-                >
-                  <IconUser
+                  style={{ alignItems: "center", gap: "5px" }}>
+                  <IconAlignJustified
                     style={{
                       color: "rgb(34,166,241)",
                       width: "30px",
                       height: "30px",
                     }}
                   />
-                  <label htmlFor="nameOfTeacher" className={classes.labelField}>
-                    {language != "English" ? "اسم المعلم" : "Name of teacher"}
+                  <label htmlFor="branch" className={classes.labelField}>
+                    {language !== "English" ? "الشعبة " : "Division"}
                   </label>
                 </Box>
                 <Box>
-                  <input
-                    type="text"
-                    id="nameOfTeacher"
-                    placeholder={
-                      language != "English" ? "اسم المعلم" : "Name of teacher"
-                    }
-                    name="nameOfTeacher"
-                    required
-                    className={classes.inputField}
-                  />
+                  <select
+                    id="branch"
+                    name="branch"
+                    value={formik.values.branch}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className={classes.inputField}>
+                    <option value="" disabled hidden>
+                      {language !== "English" ? "تخصصك" : "Your specialty"}
+                    </option>
+
+                    {branchs.map((branch) => {
+                      return (
+                        <option value={branch} key={branch}>
+                          {branch}
+                        </option>
+                      );
+                    })}
+                  </select>
+                  {formik.touched.branch && formik.errors.branch && (
+                    <Text c={"red"}>{formik.errors.branch}</Text>
+                  )}
                 </Box>
               </Box>
-              <Box mt={20}>
+              <Box w={"100%"} mt={20}>
                 <Box
                   mb={10}
                   display={"flex"}
-                  style={{ alignItems: "center", gap: "5px" }}
-                >
+                  style={{ alignItems: "center", gap: "5px" }}>
+                  <IconAlignJustified
+                    style={{
+                      color: "rgb(34,166,241)",
+                      width: "30px",
+                      height: "30px",
+                    }}
+                  />
+                  <label htmlFor="yearId" className={classes.labelField}>
+                    {language !== "English" ? "الصف الدراسي" : "Your classe "}
+                  </label>
+                </Box>
+                <Box>
+                  <select
+                    id="yearId"
+                    name="yearId"
+                    value={formik.values.yearId}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className={classes.inputField}>
+                    <option value="" disabled hidden>
+                      {language !== "English" ? "الصف " : " classe "}
+                    </option>
+                    {years.map((year) => {
+                      return (
+                        <option key={year.id} value={year.id}>
+                          {year.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                  {formik.touched.yearId && formik.errors.yearId && (
+                    <Text c={"red"}>{formik.errors.yearId}</Text>
+                  )}
+                </Box>
+              </Box>
+            </Box>
+
+            <Box
+              mt={30}
+              display={"flex"}
+              style={{
+                alignItems: "center",
+                flexDirection: "column",
+                gap: "3px",
+              }}>
+              <input
+                type="text"
+                id=""
+                placeholder={
+                  language !== "English"
+                    ? "لينك فديو المقدمه"
+                    : "Link To  trailer Video"
+                }
+                name="trailerVideo"
+                value={formik.values.trailerVideo}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={classes.inputField}
+              />
+              {formik.touched.trailerVideo && formik.errors.trailerVideo && (
+                <Text c={"red"}>{formik.errors.trailerVideo}</Text>
+              )}
+            </Box>
+
+            <Box mt={20}>
+              <Box
+                mb={10}
+                display={"flex"}
+                style={{ alignItems: "center", gap: "5px" }}>
+                <IconAlignJustified
+                  style={{
+                    color: "rgb(34,166,241)",
+                    width: "30px",
+                    height: "30px",
+                  }}
+                />
+                <label htmlFor="description" className={classes.labelField}>
+                  {language !== "English"
+                    ? "وصف موجز للكورس"
+                    : "A brief description of the course"}
+                </label>
+              </Box>
+              <Box>
+                <textarea
+                  id="description"
+                  placeholder={
+                    language !== "English"
+                      ? "وصف موجز للكورس"
+                      : "A brief description of the course"
+                  }
+                  name="description"
+                  value={formik.values.description}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={classes.inputField}
+                />
+                {formik.touched.description && formik.errors.description && (
+                  <Text c={"red"}>{formik.errors.description}</Text>
+                )}
+              </Box>
+              <Box>
+                <Box
+                  mb={10}
+                  display={"flex"}
+                  style={{ alignItems: "center", gap: "5px" }}>
                   <IconAlignJustified
                     style={{
                       color: "rgb(34,166,241)",
@@ -156,158 +449,125 @@ export default function AddCourse() {
                     }}
                   />
                   <label
-                    htmlFor="nameOfMaterial"
-                    className={classes.labelField}
-                  >
-                    {language != "English" ? "اسم المادة " : "Name of material"}
+                    htmlFor="learningOutcomes"
+                    className={classes.labelField}>
+                    {language !== "English"
+                      ? "مخرجات التعلم للكورس"
+                      : "learning Outcomes To Course"}
                   </label>
                 </Box>
                 <Box>
-                  <input
-                    type="text"
-                    id="nameOfMaterial"
+                  <textarea
+                    id="learningOutcomes"
                     placeholder={
-                      language != "English" ? "اسم المادة" : "Name of material"
+                      language !== "English"
+                        ? "مخرجات التعلم للكورس يجب عند ادخال كل عنصر الفصل ب, وإلا لن يكون بالشكل المطلوب"
+                        : "learning Outcomes to course"
                     }
-                    name="nameOfMaterial"
-                    required
+                    name="learningOutcomes"
+                    value={formik.values.learningOutcomes}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     className={classes.inputField}
                   />
+                  {formik.touched.learningOutcomes &&
+                    formik.errors.learningOutcomes && (
+                      <Text c={"red"}>{formik.errors.learningOutcomes}</Text>
+                    )}
                 </Box>
               </Box>
+            </Box>
+            <Box
+              mt={30}
+              display={"flex"}
+              style={{
+                alignItems: "center",
+                flexDirection: "column",
+                gap: "3px",
+              }}>
+              <input
+                type="text"
+                id=""
+                placeholder={
+                  language !== "English"
+                    ? " لينك لصوره الكورس"
+                    : "Link To Course Image"
+                }
+                name="imgUrl"
+                value={formik.values.imgUrl}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={classes.inputField}
+              />
+              {formik.touched.imgUrl && formik.errors.imgUrl && (
+                <Text c={"red"}>{formik.errors.imgUrl}</Text>
+              )}
+            </Box>
+            <Box
+              mt={30}
+              display={"flex"}
+              style={{
+                alignItems: "center",
+                flexDirection: "column",
+                gap: "3px",
+              }}>
+              <select
+                id=""
+                name="isFree"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={classes.inputField}>
+                <option value="" disabled hidden>
+                  {language !== "English" ? "مجاني أم لا" : "Free or not"}
+                </option>
+                <option value="True">
+                  {language !== "English" ? "مجاني" : "Free"}
+                </option>
+                <option value="False">
+                  {language !== "English" ? "غير مجاني" : "Not Free"}
+                </option>
+              </select>
+              {formik.touched.isFree && formik.errors.isFree && (
+                <Text c={"red"}>{formik.errors.isFree}</Text>
+              )}
+            </Box>
 
-              <Box
-                w={"100%"}
-                display={"flex"}
-                style={{ gap: "1rem" }}
-                className={classes.containerDepartment}
-              >
-                <Box w={"100%"} mt={20}>
-                  <Box
-                    mb={10}
-                    display={"flex"}
-                    style={{ alignItems: "center", gap: "5px" }}
-                  >
-                    <IconAlignJustified
-                      style={{
-                        color: "rgb(34,166,241)",
-                        width: "30px",
-                        height: "30px",
-                      }}
-                    />
-                    <label htmlFor="division" className={classes.labelField}>
-                      {language != "English" ? "الشعبة " : "Division"}
-                    </label>
-                  </Box>
-                  <Box>
-                    <select
-                      required
-                      id="division"
-                      className={classes.inputField}
-                      name="specialty"
-                    >
-                      <option value="" disabled selected hidden>
-                        {language != "English" ? "تخصصك" : "Your specialty"}
-                      </option>
-                      <option value="1">علمي</option>
-                      <option value="2">ادبي</option>
-                    </select>
-                  </Box>
-                </Box>
-
-                <Box w={"100%"} mt={20}>
-                  <Box
-                    mb={10}
-                    display={"flex"}
-                    style={{ alignItems: "center", gap: "5px" }}
-                  >
-                    <IconAlignJustified
-                      style={{
-                        color: "rgb(34,166,241)",
-                        width: "30px",
-                        height: "30px",
-                      }}
-                    />
-                    <label htmlFor="classe" className={classes.labelField}>
-                      {language != "English" ? "الصف الدراسي" : "Your classe "}
-                    </label>
-                  </Box>
-                  <Box>
-                    <select
-                      required
-                      id="classe"
-                      className={classes.inputField}
-                      name="classe"
-                    >
-                      <option value="" disabled selected hidden>
-                        {language != "English" ? "الصف " : " classe "}
-                      </option>
-                      <option value="1">الاول</option>
-                      <option value="2">الثاني</option>
-                    </select>
-                  </Box>
-                </Box>
-              </Box>
-
-              <Box
-                mt={30}
-                display={"flex"}
-                style={{ alignItems: "center", gap: "3px" }}
-              >
-                <IconFile
-                  style={{
-                    color: "rgb(34,166,241)",
-                    width: "30px",
-                    height: "30px",
-                  }}
-                />
-                <FileInput
-                  variant="filled"
-                  radius="xl"
-                  placeholder={language != "English" ? "اضف ملف" : "Add file"}
-                />
-              </Box>
-              <Box
-                mt={40}
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                <Button
-                  type="submit"
-                  onClick={open}
-                  color="rgb(0,52,101)"
-                  px={100}
-                >
-                  {language != "English" ? "اضافة " : "Add"}
-                </Button>
-              </Box>
-              <Modal
-                styles={{
-                  close: { color: "red" },
-                  content: { borderRadius: "15px" },
-                }}
-                opened={opened}
-                onClose={close}
-                centered
-              >
-                <Box display={"flex"} style={{ justifyContent: "center" }}>
-                  <img src={Ok} alt="" width={"120px"} height={"120px"} />
-                </Box>
-                <Text
-                  mt={20}
-                  ta={"center"}
-                  fz={17}
-                  fw={500}
-                  c={computedColorScheme == "light" ? "" : "black"}
-                >
-                  {language != "English"
-                    ? "تمت اضافة الكورس بنجاح"
-                    : "The course has been added successfully."}
-                </Text>
-              </Modal>
-            </Form>
-          </Formik>
+            <Button
+              mt={30}
+              type="submit"
+              onClick={() => {
+                console.log(formik.errors);
+              }}
+              fullWidth
+              style={{ background: "rgb(34,166,241)", color: "white" }}>
+              {language !== "English" ? "إضافة" : "Add"}
+            </Button>
+          </form>
         </Container>
       </Box>
+
+      <Modal opened={opened} onClose={close} centered>
+        <Box p={20} display={"flex"} style={{ justifyContent: "center" }}>
+          <img
+            style={{
+              width: "50%",
+              borderRadius: "50%",
+            }}
+            src={Ok}
+            alt="Ok"
+          />
+        </Box>
+        <Box display={"flex"} style={{ justifyContent: "center" }}>
+          <Button
+            onClick={close}
+            style={{
+              background: "rgb(34,166,241)",
+              color: "white",
+            }}>
+            {language !== "English" ? "حسنا" : "Ok"}
+          </Button>
+        </Box>
+      </Modal>
     </Box>
   );
 }

@@ -19,7 +19,7 @@ import {
   IconUser,
 } from "@tabler/icons-react";
 import { Form } from "react-router-dom";
-import { Formik } from "Formik";
+// import { Formik } from "Formik";
 import AddCourseSchema from "@pages/addCoursePage/schema/AddCourseSchema";
 
 export default function AddTeacher() {
@@ -28,8 +28,18 @@ export default function AddTeacher() {
   });
   const { language } = useLanguage();
 
-  function handelSubmit() {}
-
+  // function handelSubmit() {}
+  //           initialValues={{
+  //             firstName: "",
+  //             lastName: "",
+  //             email: "",
+  //             phone: "",
+  //             password: "",
+  //             confirmPassword: "",
+  //             description: "",
+  //           }}
+  //           validationSchema={AddCourseSchema}
+  //           onSubmit={handelSubmit}
   return (
     <Box mt={80} mb={50} w={"100%"} className={classes.parent}>
       <Box display={"flex"} style={{ alignItems: "center" }}>
@@ -65,18 +75,8 @@ export default function AddTeacher() {
         style={{ borderRadius: "20px" }}
       >
         <Container pt={20} pb={20}>
-          <Formik
-            initialValues={{
-              firstName: "",
-              lastName: "",
-              email: "",
-              phone: "",
-              password: "",
-              confirmPassword: "",
-              description: "",
-            }}
-            validationSchema={AddCourseSchema}
-            onSubmit={handelSubmit}
+          <form
+
           >
             <Form>
               <Box className={classes.containerField} mb={5}>
@@ -332,7 +332,7 @@ export default function AddTeacher() {
                 </Button>
               </Box>
             </Form>
-          </Formik>
+          </form>
         </Container>
       </Box>
     </Box>

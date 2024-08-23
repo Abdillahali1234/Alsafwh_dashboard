@@ -4,205 +4,7 @@ import { IconCirclePlus, IconPencil } from "@tabler/icons-react";
 import { Box, Table, useComputedColorScheme } from "@mantine/core";
 import { useLanguage } from "@pages/settings/component/language/LanguageProvider";
 
-const dataAr = [
-    {
-      name: " احمد كامل",
-      gender: "ذكر",
-      phone: 12345678910,
-      nameOfMaterial: "تاريخ",
-      email: "ahmedKamel@gmail.com",
-      date: "15/11/2023",
-    },
-    {
-        name: " احمد كامل",
-        gender: "ذكر",
-        phone: 12345678910,
-        nameOfMaterial: "تاريخ",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-    {
-        name: " احمد كامل",
-        gender: "ذكر",
-        phone: 12345678910,
-        nameOfMaterial: "تاريخ",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: " احمد كامل",
-        gender: "ذكر",
-        phone: 12345678910,
-        nameOfMaterial: "تاريخ",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: " احمد كامل",
-        gender: "ذكر",
-        phone: 12345678910,
-        nameOfMaterial: "تاريخ",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: " احمد كامل",
-        gender: "ذكر",
-        phone: 12345678910,
-        nameOfMaterial: "تاريخ",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: " احمد كامل",
-        gender: "ذكر",
-        phone: 12345678910,
-        nameOfMaterial: "تاريخ",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: " احمد كامل",
-        gender: "ذكر",
-        phone: 12345678910,
-        nameOfMaterial: "تاريخ",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: " احمد كامل",
-        gender: "ذكر",
-        phone: 12345678910,
-        nameOfMaterial: "تاريخ",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: " احمد كامل",
-        gender: "ذكر",
-        phone: 12345678910,
-        nameOfMaterial: "تاريخ",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: " احمد كامل",
-        gender: "ذكر",
-        phone: 12345678910,
-        nameOfMaterial: "تاريخ",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: " احمد كامل",
-        gender: "ذكر",
-        phone: 12345678910,
-        nameOfMaterial: "تاريخ",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
 
-  ];
-  const dataEn = [
-      {
-      name: "Ahmed Kamel",
-      gender: "Male",
-      phone: 12345678910,
-      nameOfMaterial: "History",
-      email: "ahmedKamel@gmail.com",
-      date: "15/11/2023",
-    },
-    {
-        name: "Ahmed Kamel",
-        gender: "Male",
-        phone: 12345678910,
-        nameOfMaterial: "History",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-    {
-        name: "Ahmed Kamel",
-        gender: "Male",
-        phone: 12345678910,
-        nameOfMaterial: "History",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: "Ahmed Kamel",
-        gender: "Male",
-        phone: 12345678910,
-        nameOfMaterial: "History",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: "Ahmed Kamel",
-        gender: "Male",
-        phone: 12345678910,
-        nameOfMaterial: "History",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: "Ahmed Kamel",
-        gender: "Male",
-        phone: 12345678910,
-        nameOfMaterial: "History",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: "Ahmed Kamel",
-        gender: "Male",
-        phone: 12345678910,
-        nameOfMaterial: "History",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: "Ahmed Kamel",
-        gender: "Male",
-        phone: 12345678910,
-        nameOfMaterial: "History",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: "Ahmed Kamel",
-        gender: "Male",
-        phone: 12345678910,
-        nameOfMaterial: "History",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: "Ahmed Kamel",
-        gender: "Male",
-        phone: 12345678910,
-        nameOfMaterial: "History",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: "Ahmed Kamel",
-        gender: "Male",
-        phone: 12345678910,
-        nameOfMaterial: "History",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-      {
-        name: "Ahmed Kamel",
-        gender: "Male",
-        phone: 12345678910,
-        nameOfMaterial: "History",
-        email: "ahmedKamel@gmail.com",
-        date: "15/11/2023",
-      },
-
-  ];
-  
   const headerAr = [
     "الاسم",
     "النوع",
@@ -230,13 +32,13 @@ export function Teachers() {
   });
   const { language } = useLanguage();
 
-  function data() {
-    if(language != "English"){
-      return dataAr;
-    }else{
-      return dataEn
-    }
-  }
+  // function data() {
+  //   if(language != "English"){
+  //     return dataAr;
+  //   }else{
+  //     return dataEn
+  //   }
+  // }
 
   function header() {
     if(language != "English"){
@@ -247,54 +49,54 @@ export function Teachers() {
     
   }
 
-  const rows = data().map((element, index) => (
-    <Table.Tr
-      c={
-        computedColorScheme == "light"
-          ? "black"
-          : (index + 1) % 2 == 0
-          ? "black"
-          : "white"
-      }
-      bg={
-        computedColorScheme == "light"
-          ? (index + 1) % 2 == 0
-            ? "rgb(178,185,212)"
-            : ""
-          : (index + 1) % 2 == 0
-          ? "white"
-          : ""
-      }
-      styles={{ tr: { border: "0px" } }}
-      key={element.name}
-    >
-      <Table.Td fw={600} styles={{ td: { padding: "20px" } }}>
-        {element.name}
-      </Table.Td>
-      <Table.Td  fw={600} styles={{ td: { padding: "20px" } }}>
-        {element.gender}
-      </Table.Td>
-      <Table.Td fw={600} styles={{ td: { padding: "20px" } }}>
-        {element.phone}
-      </Table.Td>
-      <Table.Td fw={600} styles={{ td: { padding: "20px" } }}>
-        {element.nameOfMaterial}
-      </Table.Td>
-      <Table.Td fw={600} styles={{ td: { padding: "20px" } }}>
-        {element.email}
-      </Table.Td>
-      <Table.Td fw={600} styles={{ td: { padding: "20px" } }}>
-        {element.date}
-      </Table.Td>
-      <Table.Td fw={600} styles={{ td: { padding: "20px" } }}>
-        <Link to={"/teachers/:id"}>
-          <IconPencil
-            style={{ width: "20px", height: "20px", color: "rgb(34,166,241" }}
-          />
-        </Link>
-      </Table.Td>
-    </Table.Tr>
-  ));
+  // const rows = data().map((element, index) => (
+  //   <Table.Tr
+  //     c={
+  //       computedColorScheme == "light"
+  //         ? "black"
+  //         : (index + 1) % 2 == 0
+  //         ? "black"
+  //         : "white"
+  //     }
+  //     bg={
+  //       computedColorScheme == "light"
+  //         ? (index + 1) % 2 == 0
+  //           ? "rgb(178,185,212)"
+  //           : ""
+  //         : (index + 1) % 2 == 0
+  //         ? "white"
+  //         : ""
+  //     }
+  //     styles={{ tr: { border: "0px" } }}
+  //     key={element.name}
+  //   >
+  //     <Table.Td fw={600} styles={{ td: { padding: "20px" } }}>
+  //       {element.name}
+  //     </Table.Td>
+  //     <Table.Td  fw={600} styles={{ td: { padding: "20px" } }}>
+  //       {element.gender}
+  //     </Table.Td>
+  //     <Table.Td fw={600} styles={{ td: { padding: "20px" } }}>
+  //       {element.phone}
+  //     </Table.Td>
+  //     <Table.Td fw={600} styles={{ td: { padding: "20px" } }}>
+  //       {element.nameOfMaterial}
+  //     </Table.Td>
+  //     <Table.Td fw={600} styles={{ td: { padding: "20px" } }}>
+  //       {element.email}
+  //     </Table.Td>
+  //     <Table.Td fw={600} styles={{ td: { padding: "20px" } }}>
+  //       {element.date}
+  //     </Table.Td>
+  //     <Table.Td fw={600} styles={{ td: { padding: "20px" } }}>
+  //       <Link to={"/teachers/:id"}>
+  //         <IconPencil
+  //           style={{ width: "20px", height: "20px", color: "rgb(34,166,241" }}
+  //         />
+  //       </Link>
+  //     </Table.Td>
+  //   </Table.Tr>
+  // ));
 
 
   return (
@@ -340,7 +142,7 @@ export function Teachers() {
                     ))}
                   </Table.Tr>
                 </Table.Thead>
-                <Table.Tbody>{rows}</Table.Tbody>
+                <Table.Tbody>{}</Table.Tbody>
               </Table>
             </Table.ScrollContainer>
           </Box>

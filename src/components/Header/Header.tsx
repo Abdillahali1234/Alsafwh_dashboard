@@ -15,7 +15,6 @@ import {
 import {
   IconAppsFilled,
   IconDeviceDesktop,
-  
   IconSchool,
   IconCurrencyDollar,
   IconUserFilled,
@@ -27,11 +26,14 @@ import {
 } from "@tabler/icons-react";
 import logo from "@assets/Alsafwa/12.png";
 import classes from "./Header.module.css";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useDisclosure } from "@mantine/hooks";
 import imageNav from "@assets/Alsafwa/11.png";
-import imageTeacher from "@assets/Alsafwa/RetratoTwo.png";
 import { useLanguage } from "@pages/settings/component/language/LanguageProvider";
+import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@store/Store";
+import { LogOutApi } from "@store/api/AuthApi";
 
 const mainLinksMockdata = [
   { icon: IconAppsFilled, title: "لوحة التحكم", link: "/", label: "Home" },
@@ -41,7 +43,7 @@ const mainLinksMockdata = [
     link: "/courses",
     label: "Courses",
   },
-  
+
   { icon: IconSchool, title: "الطلاب", link: "/students", label: "Students" },
   {
     icon: IconCurrencyDollar,
@@ -89,11 +91,42 @@ export function Header() {
 
   useEffect(() => {
     const currentPath = location.pathname;
-    const activeIndex = mainLinksMockdata.findIndex(link => link.link === currentPath);
+    const activeIndex = mainLinksMockdata.findIndex(
+      (link) => link.link === currentPath
+    );
     if (activeIndex !== -1) {
       setActive(activeIndex);
     }
   }, [location.pathname]);
+  const navigate = useNavigate();
+  const { isLogout, user } = useSelector((state: RootState) => state.User);
+  const dispatch = useDispatch<AppDispatch>();
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes,logout!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(LogOutApi("en"));
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (isLogout) {
+      Swal.fire({
+        title: "logout!",
+        text: "Your logout has been successfully.",
+        icon: "success",
+      });
+      navigate("/login");
+    }
+  }, [isLogout, navigate]);
 
   const mainLinks = mainLinksMockdata.map((link, index) => (
     <NavLink to={link.link} key={link.label}>
@@ -101,16 +134,14 @@ export function Header() {
         label={link.label}
         position="right"
         withArrow
-        transitionProps={{ duration: 0 }}
-      >
+        transitionProps={{ duration: 0 }}>
         <UnstyledButton
           pr={8}
           onClick={() => setActive(index)}
           className={classes.mainLink}
           data-active={index === active || undefined}
           mb={15}
-          mx={20}
-        >
+          mx={20}>
           <link.icon style={{ width: rem(30), height: rem(30) }} stroke={1.5} />
         </UnstyledButton>
       </Tooltip>
@@ -136,21 +167,18 @@ export function Header() {
             <Box
               mt={50}
               display={"grid"}
-              style={{ justifyItems: "center", gap: "0px" }}
-            >
-              <a href={"/login"}>
+              style={{ justifyItems: "center", gap: "0px" }}>
+              <button className={classes.StyleLogout} onClick={handleLogout}>
                 <Tooltip
                   label={"Logout"}
                   position="right"
                   withArrow
-                  transitionProps={{ duration: 0 }}
-                >
+                  transitionProps={{ duration: 0 }}>
                   <UnstyledButton
                     pr={4}
                     className={classes.mainLink}
                     mb={10}
-                    mx={20}
-                  >
+                    mx={20}>
                     <IconLogout
                       style={{
                         width: rem(30),
@@ -160,17 +188,19 @@ export function Header() {
                     />
                   </UnstyledButton>
                 </Tooltip>
-              </a>
-              <img
-                src={imageTeacher}
-                width={"60px"}
-                height={"60px"}
-                alt=""
-                style={{
-                  borderRadius: "50px",
-                  border: "1px solid rgb(39,180,252)",
-                }}
-              />
+              </button>
+              {user && (
+                <img
+                  src={user.fileUploads.url}
+                  width={"60px"}
+                  height={"60px"}
+                  alt=""
+                  style={{
+                    borderRadius: "50px",
+                    border: "1px solid rgb(39,180,252)",
+                  }}
+                />
+              )}
             </Box>
           </Box>
           <Box bg={"rgb(62,83,160)"} className={classes.main}>
@@ -179,8 +209,7 @@ export function Header() {
             </Box>
             <Box
               display={"grid"}
-              style={{ alignContent: "center", justifyContent: "center" }}
-            >
+              style={{ alignContent: "center", justifyContent: "center" }}>
               {mainLinksMockdata.map((item, index) => (
                 <Link
                   to={item.link}
@@ -196,8 +225,7 @@ export function Header() {
                       : classes.mainTitleLinkDarkEn
                   }
                   style={{ cursor: "pointer" }}
-                  data-active={index === active || undefined}
-                >
+                  data-active={index === active || undefined}>
                   {language !== "English" ? item.title : item.label}
                 </Link>
               ))}
@@ -210,8 +238,7 @@ export function Header() {
 
       <Box
         dir={language !== "English" ? "" : "ltr"}
-        className={classes.navStyle}
-      >
+        className={classes.navStyle}>
         <Box>
           <img src={imageNav} alt="" width={"70px"} height={"70px"} />
         </Box>
@@ -231,8 +258,7 @@ export function Header() {
           padding="md"
           title="Navigation"
           hiddenFrom="sm"
-          zIndex={1000000}
-        >
+          zIndex={1000000}>
           <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
             <Divider my="sm" />
             <Box display={"grid"}>
@@ -247,8 +273,7 @@ export function Header() {
                       : classes.mainTitleLinkNavDark
                   }
                   style={{ cursor: "pointer" }}
-                  data-active={index === active || undefined}
-                >
+                  data-active={index === active || undefined}>
                   {language !== "English" ? item.title : item.label}
                 </a>
               ))}

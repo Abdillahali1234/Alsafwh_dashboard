@@ -1,13 +1,12 @@
 import MainLayout from "@layouts/MainLayout";
 import HomePage from "@pages/Home/HomePage";
 import {
+  Navigate,
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
 import ErrorPage from "./../pages/error/ErrorPage";
 import { MantineProvider } from "@mantine/core";
-
-
 import { Courses } from "@pages/courses/Courses";
 import Lessons from "@pages/lesson/Lessons";
 import Students from "@pages/student/Students";
@@ -32,11 +31,12 @@ import Comments from "@pages/comments/Comments";
 import ConfirmComment from "@pages/confirmCommentPage/ConfirmComment";
 import ReviewComment from "@pages/reviewCommentPage/ReviewComment";
 import Problems from "@pages/problems/Problems";
+import { RootState } from "@store/Store";
+import { useSelector } from "react-redux";
+import Login from "@pages/login/Login";
 
 export default function AppRouter() {
-  // const { IsConfirmed , AuthModel } = useSelector(
-  //   (state: RootState) => state.Auth
-  // );
+  const { AuthModel } = useSelector((state: RootState) => state.Auth);
 
   const router = createBrowserRouter([
     {
@@ -46,114 +46,119 @@ export default function AppRouter() {
       children: [
         {
           index: true,
-          element: <HomePage />,
+          element: !AuthModel ? <Navigate to="/login" /> : <HomePage />,
         },
         {
           path: "/courses",
-          element:<Courses/>
+          element: !AuthModel ? <Navigate to="/login" /> : <Courses />,
         },
         {
           path: "/courses/add-course",
-          element:<AddCourse/>
+          element: !AuthModel ? <Navigate to="/login" /> : <AddCourse />,
         },
         {
-          path: "/details-course",
-          element:<DetailsCourse/>
+          path: "/details-course/:id",
+          element: !AuthModel ? <Navigate to="/login" /> : <DetailsCourse />,
         },
         {
-          path: "/lessons",
-          element:<Lessons/>
+          path: "/lessons/:id",
+          element: !AuthModel ? <Navigate to="/login" /> : <Lessons />,
         },
         {
-          path: "/lessons/add-lesson",
-          element:<AddLesson/>
+          path: "/lessons/add-lesson/:courseId",
+          element: !AuthModel ? <Navigate to="/login" /> : <AddLesson />,
         },
         {
           path: "/students",
-          element:<Students/>
+          element: !AuthModel ? <Navigate to="/login" /> : <Students />,
         },
         {
           path: "/students/:id",
-          element:<StudentData/>
+          element: !AuthModel ? <Navigate to="/login" /> : <StudentData />,
         },
         {
           path: "/students/:id/add-subscription",
-          element:<AddSubscription/>
+          element: !AuthModel ? <Navigate to="/login" /> : <AddSubscription />,
         },
         {
           path: "/students/:id/student-courses",
-          element:<StudentCourses/>
+          element: !AuthModel ? <Navigate to="/login" /> : <StudentCourses />,
         },
         {
           path: "/students/:id/student-subscriptions",
-          element:<StudentSubscription/>
+          element: !AuthModel ? (
+            <Navigate to="/login" />
+          ) : (
+            <StudentSubscription />
+          ),
         },
         {
           path: "/teachers",
-          element:<Teachers/>
+          element: !AuthModel ? <Navigate to="/login" /> : <Teachers />,
         },
         {
           path: "/teachers/add-teacher",
-          element:<AddTeacher/>
+          element: !AuthModel ? <Navigate to="/login" /> : <AddTeacher />,
         },
         {
           path: "/teachers/:id",
-          element:<TeacherData/>
+          element: !AuthModel ? <Navigate to="/login" /> : <TeacherData />,
         },
         {
           path: "/teachers/:id/teacher-courses",
-          element:<TeacherCourses/>
+          element: !AuthModel ? <Navigate to="/login" /> : <TeacherCourses />,
         },
         {
           path: "/subscriptions",
-          element:<Subscriptions/>
+          element: !AuthModel ? <Navigate to="/login" /> : <Subscriptions />,
         },
         {
           path: "/subscriptions/subscription-data",
-          element:<SubscriptionData/>
+          element: !AuthModel ? <Navigate to="/login" /> : <SubscriptionData />,
         },
         {
           path: "/subscribers",
-          element:<Subscribers/>
+          element: !AuthModel ? <Navigate to="/login" /> : <Subscribers />,
         },
         {
           path: "/assistants",
-          element:<Assistants/>
+          element: !AuthModel ? <Navigate to="/login" /> : <Assistants />,
         },
         {
           path: "/assistants/add-assistant",
-          element:<AddAssistant/>
+          element: !AuthModel ? <Navigate to="/login" /> : <AddAssistant />,
         },
         {
           path: "/comments",
-          element:<Comments/>
+          element: !AuthModel ? <Navigate to="/login" /> : <Comments />,
         },
         {
-          path: "/comments/confirm-comment",
-          element:<ConfirmComment/>
+          path: "/comments/ConfirmsComments",
+          element: !AuthModel ? <Navigate to="/login" /> : <ConfirmComment />,
         },
         {
           path: "/comments/review-comment",
-          element:<ReviewComment/>
+          element: !AuthModel ? <Navigate to="/login" /> : <ReviewComment />,
         },
         {
           path: "/problems",
-          element:<Problems/>
+          element: !AuthModel ? <Navigate to="/login" /> : <Problems />,
         },
         {
           path: "/settings",
-          element:<Settings/>
-        },
-        {
-          path: "/login",
+          element: !AuthModel ? <Navigate to="/login" /> : <Settings />,
         },
       ],
     },
+    {
+      path: "/login",
+      element: AuthModel ? <Navigate to="/" /> : <Login />,
+    },
   ]);
-//comment
+
   return (
     <MantineProvider>
-      <RouterProvider router={router}></RouterProvider>
+      <RouterProvider router={router} />
     </MantineProvider>
   );
 }

@@ -1,6 +1,5 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import "@mantine/core/styles.css";
-// import Header from "@components/Header/Header";
 import styles from "./MainLayout.module.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,14 +7,15 @@ import { Header } from "@components/Header/Header";
 import { Box } from "@mantine/core";
 import classes from "./MainLayout.module.css";
 import { useLanguage } from "@pages/settings/component/language/LanguageProvider";
-import Login from "@pages/login/Login";
+
 const { MainLayoutStyle } = styles;
+
 export default function MainLayout() {
   const { language } = useLanguage();
+  const location = useLocation();
 
-  const path = window.location.pathname;
-
-  // console.log(path == "/login");
+  // Determine if the current path is '/login'
+  const isLoginPage = location.pathname === "/login";
 
   return (
     <>
@@ -28,22 +28,14 @@ export default function MainLayout() {
         }}
       />
       <div className={MainLayoutStyle}>
-        {path != "/login" ? (
-          <>
-            <Box
-              dir={language != "English" ? "" : "ltr"}
-              className={classes.parent}
-            >
-              <Header />
-              <Outlet />
-            </Box>
-            {/* <Footer /> */}
-          </>
-        ) : (
-          <>
-            <Login />
-          </>
-        )}
+        <Box
+          dir={language !== "English" ? "" : "ltr"}
+          className={classes.parent}>
+          {/* Render Header only if not on the login page */}
+          {!isLoginPage && <Header /> }
+          <Outlet />
+          
+        </Box>
       </div>
     </>
   );

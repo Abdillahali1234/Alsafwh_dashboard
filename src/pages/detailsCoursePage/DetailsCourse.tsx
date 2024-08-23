@@ -7,17 +7,15 @@ import {
 } from "@mantine/core";
 import classes from "./DetailsCourse.module.css";
 import { useLanguage } from "@pages/settings/component/language/LanguageProvider";
-import {
-  IconCaretLeftFilled,
-  IconCaretRightFilled,
-  IconPencil,
-  IconStarFilled,
-} from "@tabler/icons-react";
-import image from "@assets/Alsafwa/Archaeologist-bro(1).png";
-import { Link } from "react-router-dom";
+import { IconCaretLeftFilled, IconCaretRightFilled } from "@tabler/icons-react";
+import { Link, useParams } from "react-router-dom";
 import { useDisclosure } from "@mantine/hooks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Model from "./Model";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@store/Store";
+import { GetCourseApi } from "@store/api/CourseApi";
+import Stars from "@shared/Stars/Stars";
 
 export default function DetailsCourse() {
   const computedColorScheme = useComputedColorScheme("light", {
@@ -30,17 +28,17 @@ export default function DetailsCourse() {
   const [opened, { open, close }] = useDisclosure(false);
 
   const [click, setClick] = useState(false);
-  
 
-  const star = (
-    <Box style={{}}>
-      <IconStarFilled style={{ color: "gold" }} />
-      <IconStarFilled style={{ color: "gold" }} />
-      <IconStarFilled style={{ color: "gold" }} />
-      <IconStarFilled style={{ color: "#eee" }} />
-      <IconStarFilled style={{ color: "#eee" }} />
-    </Box>
-  );
+  const { course } = useSelector((state: RootState) => state.Course);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { id } = useParams();
+  useEffect(() => {
+    if (!id) return;
+    dispatch(GetCourseApi(id));
+  }, [dispatch, id]);
+
+  console.log(course);
 
   return (
     <Box w={"100%"} mb={50} className={classes.parent}>
@@ -60,195 +58,167 @@ export default function DetailsCourse() {
           <Text
             c={computedColorScheme == "light" ? "black" : "white"}
             fw={600}
-            fz={22}
-          >
+            fz={22}>
             {language != "English" ? " الكورسات" : "The courses"}
           </Text>
         </Link>
       </Box>
-
-      <Box mt={50} className={classes.containerCourse}>
-        <Box>
-          <Box className={classes.containerImage}>
-            <img src={image} alt="" className={classes.styleImage} />
-          </Box>
-
-          <Box mt={20} px={10} className={classes.detailsCourse}>
-            <Box>
-              <Text mb={15} fz={18} fw={500} c={"rgb(96,188,241)"}>
-                {language != "English" ? " اسم الكورس:" : "Course name:"}
-                <span
-                  style={{
-                    color: color,
-                    fontSize: "15px",
-                    fontWeight: 400,
-                  }}
-                >
-                  {language != "English"
-                    ? " التاريخ هويتنا"
-                    : "History is our identity"}
-                </span>
-              </Text>
-              <Text mb={15} fz={18} fw={500} c={"rgb(96,188,241)"}>
-                {language != "English" ? "اسم المادة: " : "Material Name:"}
-                <span
-                  style={{
-                    color: color,
-                    fontSize: "15px",
-                    fontWeight: 400,
-                  }}
-                >
-                  {" "}
-                  {language != "English" ? "التاريخ  " : "History"}{" "}
-                </span>
-              </Text>
-              <Text mb={15} fz={18} fw={500} c={"rgb(96,188,241)"}>
-                {language != "English" ? "المعلم : " : " Teacher:"}
-                <span
-                  style={{
-                    color: color,
-                    fontSize: "15px",
-                    fontWeight: 400,
-                  }}
-                >
-                  {" "}
-                  {language != "English" ? "احمد كامل  " : "Ahmed Kamel"}{" "}
-                </span>
-              </Text>
-              <Text mb={15} fz={18} fw={500} c={"rgb(96,188,241)"}>
-                {language != "English" ? " الصف: " : " classe:"}
-                <span
-                  style={{
-                    color: color,
-                    fontSize: "15px",
-                    fontWeight: 400,
-                  }}
-                >
-                  {" "}
-                  {language != "English"
-                    ? "الثاني الثانوي "
-                    : " The second secondary"}{" "}
-                </span>
-              </Text>
-              <Text mb={15} fz={18} fw={500} c={"rgb(96,188,241)"}>
-                {language != "English" ? " الشعبة: " : " Division:"}
-                <span
-                  style={{
-                    color: color,
-                    fontSize: "15px",
-                    fontWeight: 400,
-                  }}
-                >
-                  {" "}
-                  {language != "English" ? " ادبي " : " literary  "}{" "}
-                </span>
-              </Text>
-              <Text mb={15} fz={18} fw={500} c={"rgb(96,188,241)"}>
-                {language != "English" ? " تاريخ الاضافة: " : " Date added:"}
-                <span
-                  style={{
-                    color: color,
-                    fontSize: "15px",
-                    fontWeight: 400,
-                  }}
-                >
-                  {" "}
-                  15/01/2023
-                </span>
-              </Text>
+      {course ? (
+        <Box mt={50} className={classes.containerCourse}>
+          <Box>
+            <Box className={classes.containerImage}>
+              <img src={course?.imgUrl} alt="" className={classes.styleImage} />
             </Box>
 
-            <Box>
-              <Box
-                mb={15}
-                display={"flex"}
-                style={{ gap: "5px", flexWrap: "wrap" }}
-              >
-                <Text fz={18} fw={500} c={"rgb(96,188,241)"}>
-                  {language != "English" ? "  التقييم:" : " Evaluation:"}
+            <Box mt={20} px={10} className={classes.detailsCourse}>
+              <Box>
+                <Text mb={15} fz={18} fw={500} c={"rgb(96,188,241)"}>
+                  {language != "English" ? " اسم الكورس:" : "Course name:"}
+                  <span
+                    style={{
+                      color: color,
+                      fontSize: "15px",
+                      fontWeight: 400,
+                    }}>
+                    {course?.title}
+                  </span>
                 </Text>
-                {star}
+                <Text mb={15} fz={18} fw={500} c={"rgb(96,188,241)"}>
+                  {language != "English" ? "اسم المادة: " : "Material Name:"}
+                  <span
+                    style={{
+                      color: color,
+                      fontSize: "15px",
+                      fontWeight: 400,
+                    }}>
+                    {" "}
+                    {course?.subject?.name}
+                  </span>
+                </Text>
+                <Text mb={15} fz={18} fw={500} c={"rgb(96,188,241)"}>
+                  {language != "English" ? "المعلم : " : " Teacher:"}
+                  <span
+                    style={{
+                      color: color,
+                      fontSize: "15px",
+                      fontWeight: 400,
+                    }}>
+                    {course?.teacher.user.firstName +
+                      " " +
+                      course?.teacher.user.lastName}
+                  </span>
+                </Text>
+                <Text mb={15} fz={18} fw={500} c={"rgb(96,188,241)"}>
+                  {language != "English" ? " الصف: " : " classe:"}
+                  <span
+                    style={{
+                      color: color,
+                      fontSize: "15px",
+                      fontWeight: 400,
+                    }}>
+                    {" "}
+                    {course?.year?.name}
+                  </span>
+                </Text>
+                <Text mb={15} fz={18} fw={500} c={"rgb(96,188,241)"}>
+                  {language != "English" ? " الشعبة: " : " Division:"}
+                  <span
+                    style={{
+                      color: color,
+                      fontSize: "15px",
+                      fontWeight: 400,
+                    }}>
+                    {" "}
+                    {language != "English" ? " ادبي " : " literary  "}{" "}
+                  </span>
+                </Text>
+                <Text mb={15} fz={18} fw={500} c={"rgb(96,188,241)"}>
+                  {language != "English" ? " تاريخ الاضافة: " : " Date added:"}
+                  <span
+                    style={{
+                      color: color,
+                      fontSize: "15px",
+                      fontWeight: 400,
+                    }}>
+                    {" "}
+                    {course && new Date(course.createAt).toLocaleDateString()}
+                  </span>
+                </Text>
               </Box>
-              <Box
-                mb={15}
-                display={"flex"}
-                style={{ flexWrap: "wrap", gap: "5px" }}
-              >
-                <Text mb={0} fz={18} fw={500} c={"rgb(96,188,241)"}>
-                  {language != "English" ? " الملف: " : " The file:"}
-                </Text>
-                <Link
-                  to={""}
+              <Box>
+                <Box
+                  mb={15}
+                  display={"flex"}
                   style={{
-                    color: color,
-                    fontSize: "17px",
-                    fontWeight: 400,
-                    display: "flex",
-                    gap: "2rem",
-                  }}
-                >
-                  <Text>
-                    {language != "English" ? "التاريخ.pbf " : "History"}
-                  </Text>{" "}
-                  <IconPencil style={{ color: "rgb(96,188,241)" }} />
-                </Link>
+                    gap: "5px",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                  }}>
+                  <Text fz={18} fw={500} c={"rgb(96,188,241)"}>
+                    {language != "English" ? "  التقييم:" : " Evaluation:"}
+                  </Text>
+                  {course?.evalution > 0 ? (
+                    <Stars num={course?.evalution} />
+                  ) : (
+                    <span>لا يوجد تقييم</span>
+                  )}
+                </Box>
               </Box>
             </Box>
           </Box>
-        </Box>
-        {click == true ? <Model /> : ""}
+          {click == true ? <Model /> : ""}
+          <Modal
+            styles={{
+              close: { color: "red" },
+              content: { borderRadius: "15px" },
+            }}
+            opened={!click ? opened : false}
+            onClose={close}
+            centered>
+            <Text
+              mb={20}
+              ta={"center"}
+              fz={17}
+              fw={500}
+              c={computedColorScheme == "light" ? "" : "black"}>
+              {language != "English"
+                ? "   هل تريد حذف الكورس؟"
+                : "Do you want to delete the course?"}
+            </Text>
 
-        
+            <Box display={"flex"} style={{ justifyContent: "space-around" }}>
+              <Button
+                onClick={() => setClick(true)}
+                variant="subtle"
+                c={"green"}>
+                {language != "English" ? "نعم" : "Yes"}
+              </Button>
+              <Button onClick={close} variant="subtle" c={"red"}>
+                {language != "English" ? "لا" : "No"}
+              </Button>
+            </Box>
+          </Modal>
 
-        <Modal
-          styles={{
-            close: { color: "red" },
-            content: { borderRadius: "15px" },
-          }}
-          opened={!click ? opened :false}
-          onClose={close}
-          centered
-        >
-          <Text
-            mb={20}
-            ta={"center"}
-            fz={17}
-            fw={500}
-            c={computedColorScheme == "light" ? "" : "black"}
-          >
-            {language != "English"
-              ? "   هل تريد حذف الكورس؟"
-              : "Do you want to delete the course?"}
-          </Text>
-
-          <Box display={"flex"} style={{ justifyContent: "space-around" }}>
-            <Button onClick={() => setClick(true)} variant="subtle" c={"green"}>
-              {language != "English" ? "نعم" : "Yes"}
-            </Button>
-            <Button onClick={close} variant="subtle" c={"red"}>
-              {language != "English" ? "لا" : "No"}
+          <Box
+            mt={50}
+            display={"flex"}
+            style={{
+              justifyContent: "space-around",
+              gap: "1rem",
+              flexWrap: "wrap",
+              alignItems: "center",
+            }}>
+            <Link to={`/lessons/${course.id}`} className={classes.lessonLink}>
+              {language != "English" ? "دروس" : "Lesson"}
+            </Link>
+            <Button px={50} onClick={open} color="red">
+              {language != "English" ? "حذف" : "Delete"}
             </Button>
           </Box>
-        </Modal>
-
-        <Box
-          mt={50}
-          display={"flex"}
-          style={{
-            justifyContent: "space-around",
-            gap: "1rem",
-            flexWrap: "wrap",
-            alignItems: "center",
-          }}
-        >
-          <Link to={"/lessons"} className={classes.lessonLink}>
-            {language != "English" ? "دروس" : "Lesson"}
-          </Link>
-          <Button px={50} onClick={open} color="red">
-            {language != "English" ? "حذف" : "Delete"}
-          </Button>
         </Box>
-      </Box>
+      ) : (
+        <></>
+      )}
     </Box>
   );
 }
