@@ -1,15 +1,63 @@
 import { useLanguage } from "@pages/settings/component/language/LanguageProvider";
 import classes from "./StudentCourses.module.css";
 
-import {
-  Box,
-  ScrollArea,
-  Text,
-  useComputedColorScheme,
-} from "@mantine/core";
+import { Box, ScrollArea, Text, useComputedColorScheme } from "@mantine/core";
 import { IconCaretLeftFilled, IconCaretRightFilled } from "@tabler/icons-react";
 import image from "@assets/Alsafwa/Archaeologist-bro(1).png";
 import { Link } from "react-router-dom";
+
+const courses = [
+  {
+    image: image,
+    nameCourse: "التاريخ هويتنا",
+    materialName: "التاريخ",
+  },
+  {
+    image: image,
+    nameCourse: "التاريخ هويتنا",
+    materialName: "التاريخ",
+  },
+  {
+    image: image,
+    nameCourse: "التاريخ هويتنا",
+    materialName: "التاريخ",
+  },
+  {
+    image: image,
+    nameCourse: "التاريخ هويتنا",
+    materialName: "التاريخ",
+  },
+  {
+    image: image,
+    nameCourse: "التاريخ هويتنا",
+    materialName: "التاريخ",
+  },
+  {
+    image: image,
+    nameCourse: "التاريخ هويتنا",
+    materialName: "التاريخ",
+  },
+  {
+    image: image,
+    nameCourse: "التاريخ هويتنا",
+    materialName: "التاريخ",
+  },
+  {
+    image: image,
+    nameCourse: "التاريخ هويتنا",
+    materialName: "التاريخ",
+  },
+  {
+    image: image,
+    nameCourse: "التاريخ هويتنا",
+    materialName: "التاريخ",
+  },
+  {
+    image: image,
+    nameCourse: "التاريخ هويتنا",
+    materialName: "التاريخ",
+  },
+];
 
 export default function StudentCourses() {
   const computedColorScheme = useComputedColorScheme("light", {
@@ -19,50 +67,42 @@ export default function StudentCourses() {
 
   const color = computedColorScheme == "light" ? "black" : "white";
 
-  function name() {
-
-            const comp=<Box>
-                        <Link to={"/details-course"} style={{textDecoration:"none"}}>
-                            <Box className={classes.containerImage}>
-                            <img src={image} alt="" height={"250px"} width={"100%"} />
-                            </Box>
-                            <Box px={10}>
-                            <Text mb={10} fz={18} fw={500} c={"rgb(96,188,241)"}>
-                                {language != "English" ? " اسم الكورس:" : "Course name:"}
-                                <span
-                                style={{
-                                    color: color,
-                                    fontSize: "15px",
-                                    fontWeight: 400,
-                                }}
-                                >
-                                {language != "English"
-                                    ? " التاريخ هويتنا"
-                                    : "History is our identity"}
-                                </span>
-                            </Text>
-                            <Text mb={10} fz={18} fw={500} c={"rgb(96,188,241)"}>
-                                {language != "English"
-                                    ? "اسم المادة: "
-                                    : "Material Name:"}        
-                                <span
-                                style={{
-                                    color: color,
-                                    fontSize: "15px",
-                                    fontWeight: 400,
-                                }}
-                                >
-                                {" "}{language != "English"
-                                    ? "التاريخ  "
-                                    : "History"}
-                                {" "}
-                                </span>
-                            </Text>
-                            </Box>
-                         </Link>
-                        </Box>
-    return comp;
-  }
+  const course = courses.map((item, index) => (
+    <Box key={index}>
+      <Link to={"/details-course"} style={{ textDecoration: "none" }}>
+        <Box className={classes.containerImage}>
+          <img src={item.image} alt="" height={"250px"} width={"100%"} />
+        </Box>
+        <Box px={10}>
+          <Text mb={10} fz={18} fw={500} c={"rgb(96,188,241)"}>
+            {language != "English" ? " اسم الكورس:" : "Course name:"}
+            <span
+              style={{
+                color: color,
+                fontSize: "15px",
+                fontWeight: 400,
+              }}
+            >
+              {item.nameCourse}
+            </span>
+          </Text>
+          <Text mb={10} fz={18} fw={500} c={"rgb(96,188,241)"}>
+            {language != "English" ? "اسم المادة: " : "Material Name:"}
+            <span
+              style={{
+                color: color,
+                fontSize: "15px",
+                fontWeight: 400,
+              }}
+            >
+              {" "}
+              {item.materialName}
+            </span>
+          </Text>
+        </Box>
+      </Link>
+    </Box>
+  ));
 
   return (
     <Box w={"100%"} mb={50} className={classes.parent}>
@@ -79,7 +119,7 @@ export default function StudentCourses() {
               stroke={2.0}
             />
           )}
-         <Link to={"/students/:id"} style={{textDecoration:"none"}}>
+          <Link to={"/students/:id"} style={{ textDecoration: "none" }}>
             <Box
               display={"flex"}
               style={{ alignItems: "center", gap: "5px", flexWrap: "wrap" }}
@@ -119,49 +159,37 @@ export default function StudentCourses() {
               type="auto"
               offsetScrollbars
               scrollHideDelay={0}
-              styles={{thumb:{backgroundColor:"rgb(62,83,160)"}}}
+              styles={{ thumb: { backgroundColor: "rgb(62,83,160)" } }}
             >
               <Box className={classes.containerCourses}>
-                {
-                    name()
-                }
-                {
-                    name()
-                }
-                {
-                    name()
-                }
-                {
-                    name()
-                }
-                {
-                    name()
-                }
-                {
-                    name()
-                }
-                {
-                    name()
-                }
-                {
-                    name()
-                }
-                
-                
+                {course}
               </Box>
             </ScrollArea>
           </Box>
-
         </Box>
 
-        <Box mt={70} display={"flex"} style={{justifyContent:"space-around" , gap:"2rem" , flexWrap:"wrap"}}>
-            <Link to={"/students/:id/student-courses"} className={classes.coursesLink}>
-          {language != "English" ? "الكورسات " : "The courses"}
-             </Link>
-            <Link to={"/students/:id/student-subscriptions"} className={classes.subscriptions}> 
-          {language != "English" ? "الاشتراكات " : "Subscriptions"}
-            </Link>
-      </Box>
+        <Box
+          mt={70}
+          display={"flex"}
+          style={{
+            justifyContent: "space-around",
+            gap: "2rem",
+            flexWrap: "wrap",
+          }}
+        >
+          <Link
+            to={"/students/:id/student-courses"}
+            className={classes.coursesLink}
+          >
+            {language != "English" ? "الكورسات " : "The courses"}
+          </Link>
+          <Link
+            to={"/students/:id/student-subscriptions"}
+            className={classes.subscriptions}
+          >
+            {language != "English" ? "الاشتراكات " : "Subscriptions"}
+          </Link>
+        </Box>
       </Box>
     </Box>
   );

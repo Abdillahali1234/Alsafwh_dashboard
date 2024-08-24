@@ -11,6 +11,8 @@
     flex-wrap: wrap;
     gap: 2rem;
 }
+
+
  .coursesLink , .subscriptions{
     text-decoration: none;
     color: white;
@@ -66,128 +68,5 @@
         margin-right:20px ;
             margin-left:20px ;
     }
-    
+
 }
-
-.lineTwoH{
-display: none;
-}
-
-.lineOneH{
-    display: none;
-}
-
-@media (max-width:1177px) {
-   .lineTwo{
-    visibility: hidden;
-   }
-   .lineTwoH{
-    display: inherit;
-    }
-}
-
-
-@media (max-width:843px) {
-    .lineOne{
-     visibility: hidden;
-    }
-    .lineOneH{
-        display: inherit;
-    }
- }
-
- 
-@media (max-width:768px) {
-    .lineOne{
-     visibility: inherit;
-    }
-    .lineOneH{
-        display: none;
-    }
- }
-
- @media (max-width:608px) {
-    
-    .lineOne{
-        visibility: hidden;
-    }
-
-    .lineOneH{
-        display: inherit;
-    }
- }
-
- @media (max-width:559px) {
-    
-    .lineOne{
-        display: none;
-    }
-    .lineTwo{
-        display: none;
-    }
-     
- }
- 
- 
-
- .lineTwoHEn{
-    display: none;
-    }
-    
-    .lineOneHEn{
-        display: none;
-    }
-
-
-    
-    @media (max-width:1250px) {
-       .lineTwoEn{
-        visibility: hidden;
-       }
-       .lineTwoHEn{
-        display: inherit;
-        }
-    }
-    
-    
-    @media (max-width:955px) {
-        .lineOneEn{
-         visibility: hidden;
-        }
-        .lineOneHEn{
-            display: inherit;
-        }
-     }
-    
-     
-    @media (max-width:768px) {
-        .lineOneEn{
-         visibility: inherit;
-        }
-        .lineOneHEn{
-            display: none;
-        }
-     }
-    
-     @media (max-width:720px) {
-        
-        .lineOneEn{
-            visibility: hidden;
-        }
-    
-        .lineOneHEn{
-            display: inherit;
-        }
-     }
-    
-     @media (max-width:559px) {
-        
-        .lineOneEn{
-            display: none;
-        }
-        .lineTwoEn{
-            display: none;
-        }
-         
-     }
-     

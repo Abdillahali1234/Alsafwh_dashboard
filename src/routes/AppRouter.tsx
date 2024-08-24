@@ -34,6 +34,11 @@ import Problems from "@pages/problems/Problems";
 import { RootState } from "@store/Store";
 import { useSelector } from "react-redux";
 import Login from "@pages/login/Login";
+import AdminData from './../pages/adminDataPage/AdminData';
+import RecordPlan from './../pages/recordPlanPage/RecordPlan';
+import DiscountCodes from './../pages/discountCodes/DiscountCodes';
+import Materials from './../pages/materials/Materials';
+import ClassesPage from './../pages/classesPage/ClassesPage';
 
 export default function AppRouter() {
   const { AuthModel } = useSelector((state: RootState) => state.Auth);
@@ -51,6 +56,14 @@ export default function AppRouter() {
         {
           path: "/courses",
           element: !AuthModel ? <Navigate to="/login" /> : <Courses />,
+        },
+        {
+          path: "/materials",
+          element: !AuthModel ? <Navigate to="/login" /> : <Materials/>,
+        },
+        {
+          path: "/classes",
+          element: !AuthModel ? <Navigate to="/login" /> : <ClassesPage/>,
         },
         {
           path: "/courses/add-course",
@@ -113,8 +126,16 @@ export default function AppRouter() {
           element: !AuthModel ? <Navigate to="/login" /> : <Subscriptions />,
         },
         {
+          path: "/record-plans",
+          element: !AuthModel ? <Navigate to="/login" /> : <RecordPlan/>,
+        },
+        {
           path: "/subscriptions/subscription-data",
           element: !AuthModel ? <Navigate to="/login" /> : <SubscriptionData />,
+        },
+        {
+          path: "/discount-codes",
+          element: !AuthModel ? <Navigate to="/login" /> : <DiscountCodes/>,
         },
         {
           path: "/subscribers",
@@ -123,6 +144,10 @@ export default function AppRouter() {
         {
           path: "/assistants",
           element: !AuthModel ? <Navigate to="/login" /> : <Assistants />,
+        },
+        {
+          path: "/assistants/:id",
+          element: !AuthModel ? <Navigate to="/login" /> : <AdminData/>,
         },
         {
           path: "/assistants/add-assistant",

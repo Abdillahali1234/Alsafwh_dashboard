@@ -1,10 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IAuthModel } from "@utilities/interfaces/AuthInterface";
 import { Cookies } from "react-cookie";
+
+
+  
 export interface StateInterface {
   IsLoading: boolean;
   AuthModel: IAuthModel | null;
 }
+
+
+
+
 
 const cookies = new Cookies();
 const AuthModelStored = cookies.get("authModelAdmin");

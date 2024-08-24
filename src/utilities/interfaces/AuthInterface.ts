@@ -16,3 +16,4 @@ export interface IAuthModel {
   username: string | null;
   userId: string | null;
 }
+

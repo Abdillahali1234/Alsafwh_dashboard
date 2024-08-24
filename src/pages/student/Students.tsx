@@ -1,4 +1,8 @@
-import { Box, Button, Table, useComputedColorScheme } from "@mantine/core";
+import {
+  Box,
+  Table,
+  useComputedColorScheme,
+} from "@mantine/core";
 import classes from "./Students.module.css";
 import { useLanguage } from "@pages/settings/component/language/LanguageProvider";
 import { Link } from "react-router-dom";
@@ -36,11 +40,7 @@ export default function Students() {
     <Box
       dir={language != "English" ? "" : "ltr"}
       className={classes.containerTable}>
-      <Box display={"flex"} style={{ justifyContent: "start" }}>
-        <Button className={classes.deleteStudent}>
-          {language != "English" ? "حذف طالب" : "Delete a student"}
-        </Button>
-      </Box>
+
       <Box>
         <Table.ScrollContainer
           className={classes.table}

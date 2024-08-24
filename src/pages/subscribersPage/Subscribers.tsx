@@ -11,7 +11,7 @@ import {
 const dataAr = [
   {
     name: " احمد كامل",
-    map: "شهري",
+    plan: "شهري",
     price: 150,
     classe: "الاول",
     division: "ادبي",
@@ -19,7 +19,7 @@ const dataAr = [
   },
   {
     name: " احمد كامل",
-    map: "شهري",
+    plan: "شهري",
     price: 150,
     classe: "الاول",
     division: "ادبي",
@@ -27,7 +27,7 @@ const dataAr = [
   },
   {
     name: " احمد كامل",
-    map: "شهري",
+    plan: "شهري",
     price: 150,
     classe: "الاول",
     division: "ادبي",
@@ -35,7 +35,7 @@ const dataAr = [
   },
   {
     name: " احمد كامل",
-    map: "شهري",
+    plan: "شهري",
     price: 150,
     classe: "الاول",
     division: "ادبي",
@@ -43,7 +43,7 @@ const dataAr = [
   },
   {
     name: " احمد كامل",
-    map: "شهري",
+    plan: "شهري",
     price: 150,
     classe: "الاول",
     division: "ادبي",
@@ -51,7 +51,7 @@ const dataAr = [
   },
   {
     name: " احمد كامل",
-    map: "شهري",
+    plan: "شهري",
     price: 150,
     classe: "الاول",
     division: "ادبي",
@@ -59,7 +59,7 @@ const dataAr = [
   },
   {
     name: " احمد كامل",
-    map: "شهري",
+    plan: "شهري",
     price: 150,
     classe: "الاول",
     division: "ادبي",
@@ -67,7 +67,7 @@ const dataAr = [
   },
   {
     name: " احمد كامل",
-    map: "شهري",
+    plan: "شهري",
     price: 150,
     classe: "الاول",
     division: "ادبي",
@@ -75,7 +75,7 @@ const dataAr = [
   },
   {
     name: " احمد كامل",
-    map: "شهري",
+    plan: "شهري",
     price: 150,
     classe: "الاول",
     division: "ادبي",
@@ -83,7 +83,7 @@ const dataAr = [
   },
   {
     name: " احمد كامل",
-    map: "شهري",
+    plan: "شهري",
     price: 150,
     classe: "الاول",
     division: "ادبي",
@@ -91,7 +91,7 @@ const dataAr = [
   },
   {
     name: " احمد كامل",
-    map: "شهري",
+    plan: "شهري",
     price: 150,
     classe: "الاول",
     division: "ادبي",
@@ -99,7 +99,7 @@ const dataAr = [
   },
   {
     name: " احمد كامل",
-    map: "شهري",
+    plan: "شهري",
     price: 150,
     classe: "الاول",
     division: "ادبي",
@@ -107,7 +107,7 @@ const dataAr = [
   },
   {
     name: " احمد كامل",
-    map: "شهري",
+    plan: "شهري",
     price: 150,
     classe: "الاول",
     division: "ادبي",
@@ -115,7 +115,7 @@ const dataAr = [
   },
   {
     name: " احمد كامل",
-    map: "شهري",
+    plan: "شهري",
     price: 150,
     classe: "الاول",
     division: "ادبي",
@@ -125,7 +125,7 @@ const dataAr = [
 const dataEn = [
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -133,7 +133,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -141,7 +141,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -149,7 +149,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -157,7 +157,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -165,7 +165,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -173,7 +173,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -181,7 +181,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -189,7 +189,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -197,7 +197,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -205,7 +205,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -213,7 +213,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -221,7 +221,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -229,7 +229,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -237,7 +237,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -245,7 +245,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -253,7 +253,7 @@ const dataEn = [
   },
   {
     name: "  Ahmed Kamel",
-    map: "Monthly",
+    plan: "Monthly",
     price: 150,
     classe: "The first",
     division: "Literary",
@@ -274,7 +274,7 @@ const headerAr = [
 
 const headerEn = [
   "Name",
-  "Map",
+  "Plan",
   "Price",
   "Academic class ",
   "Division",
@@ -330,7 +330,7 @@ export default function Subscribers() {
         {element.name}
       </Table.Td>
       <Table.Td fw={600} styles={{ td: { padding: "20px" } }}>
-        {element.map}
+        {element.plan}
       </Table.Td>
       <Table.Td fw={600} styles={{ td: { padding: "20px" } }}>
         {element.price}
@@ -359,29 +359,33 @@ export default function Subscribers() {
       dir={language != "English" ? "" : "ltr"}
       className={classes.containerTable}
     >
-      <Box mb={20} display={"flex"} style={{ alignItems: "center" }}>
-        {language != "English" ? (
-          <IconCaretLeftFilled
-            style={{
-              width: "30px",
-              height: "30px",
-              color: "rgb(62,83,160)",
-            }}
-            stroke={2.0}
-          />
-        ) : (
-          <IconCaretRightFilled
-            style={{
-              width: "30px",
-              height: "30px",
-              color: "rgb(62,83,160)",
-            }}
-            stroke={2.0}
-          />
-        )}
+      <Box display={"flex"} style={{justifyContent:"space-between", alignItems:"center" , gap:"1rem"}}>
+          <Box
+            mb={20}
+            display={"flex"}
+            style={{ alignItems: "center" }}
+          >
+            {language != "English" ? (
+              <IconCaretLeftFilled
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  color: "rgb(62,83,160)",
+                }}
+                stroke={2.0}
+              />
+            ) : (
+              <IconCaretRightFilled
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  color: "rgb(62,83,160)",
+                }}
+                stroke={2.0}
+              />
+            )}
 
-        <Link to={"/subscriptions"} style={{textDecoration:"none"}}>
-
+            <Link to={"/subscriptions"} style={{ textDecoration: "none" }}>
               <Text
                 c={computedColorScheme == "light" ? "black" : "white"}
                 fw={600}
@@ -390,6 +394,14 @@ export default function Subscribers() {
                 {language != "English" ? "الاشتراكات" : "Subscription"}
               </Text>
             </Link>
+          </Box>
+
+
+
+      <Link className={classes.linkCodes} to={"/discount-codes"} >
+                {language != "English" ? "اكواد الخصم" : ""}
+            </Link>
+
       </Box>
 
       <Box mt={20} mb={30}>

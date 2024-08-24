@@ -12,6 +12,11 @@ export default function SubscriptionsSection() {
   const { language } = useLanguage();
   return (
     <div>
+      <Box className={classes.containerLinkPlan}>
+        <Link to="/record-plans" className={classes.recordPlan}>
+        {language != "English" ? "سجل الخطط" : "record plans"}
+        </Link>
+      </Box>
       <Text
         c={computedColorScheme == "light" ? "" : "white"}
         ta={"center"}

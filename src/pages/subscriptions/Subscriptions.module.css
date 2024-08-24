@@ -14,6 +14,25 @@
     display: inline-block;
 }
 
+.containerLinkPlan{
+    display: flex;
+    justify-content: end;
+
+    margin: 0px 50px 50px 50px;
+}
+
+.recordPlan {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(34, 139, 230);
+    padding: 5px 45px;
+    font-size: 17px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+
+
 @media (max-width:1250px) {
     
     .parent{
@@ -37,127 +56,17 @@
             margin-left:20px ;
     }
     
-}
-
-.lineTwoH{
-display: none;
-}
-
-.lineOneH{
-    display: none;
-}
-
-@media (max-width:1177px) {
-   .lineTwo{
-    visibility: hidden;
-   }
-   .lineTwoH{
-    display: inherit;
-    }
-}
-
-
-@media (max-width:843px) {
-    .lineOne{
-     visibility: hidden;
-    }
-    .lineOneH{
-        display: inherit;
-    }
- }
-
- 
-@media (max-width:768px) {
-    .lineOne{
-     visibility: inherit;
-    }
-    .lineOneH{
-        display: none;
-    }
- }
-
- @media (max-width:608px) {
-    
-    .lineOne{
-        visibility: hidden;
-    }
-
-    .lineOneH{
-        display: inherit;
-    }
- }
-
- @media (max-width:559px) {
-    
-    .lineOne{
-        display: none;
-    }
-    .lineTwo{
-        display: none;
-    }
-     
- }
- 
- 
-
- .lineTwoHEn{
-    display: none;
-    }
-    
-    .lineOneHEn{
-        display: none;
-    }
-
-
-    
-    @media (max-width:1250px) {
-       .lineTwoEn{
-        visibility: hidden;
-       }
-       .lineTwoHEn{
-        display: inherit;
-        }
-    }
-    
-    
-    @media (max-width:955px) {
-        .lineOneEn{
-         visibility: hidden;
-        }
-        .lineOneHEn{
-            display: inherit;
-        }
-     }
-    
-     
-    @media (max-width:768px) {
-        .lineOneEn{
-         visibility: inherit;
-        }
-        .lineOneHEn{
-            display: none;
-        }
-     }
-    
-     @media (max-width:720px) {
+    .containerLinkPlan{
         
-        .lineOneEn{
-            visibility: hidden;
-        }
+        margin: 0px 30px 50px 30px;
+    }
+}
+
+
+@media (max-width:500px) {
     
-        .lineOneHEn{
-            display: inherit;
-        }
-     }
-    
-     @media (max-width:559px) {
+    .containerLinkPlan{
         
-        .lineOneEn{
-            display: none;
-        }
-        .lineTwoEn{
-            display: none;
-        }
-         
-     }
-     
+        margin: 0px 20px 30px 20px;
+    }
+}

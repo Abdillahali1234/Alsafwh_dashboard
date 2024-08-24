@@ -150,3 +150,20 @@
     border-radius: 4px;
     padding: 5px 50px;
 }
+
+.btnPlus{
+    border-top-left-radius:0px;
+    border-bottom-left-radius:0px;
+    border-top-right-radius:50px;
+    border-bottom-right-radius:50px;
+    padding: 0px 10px;
+}
+
+.btnMins{
+border-top-left-radius:50px;
+    border-bottom-left-radius:50px;
+    border-top-right-radius:0px;
+    border-bottom-right-radius:0px;
+    padding: 0px 10px;
+
+}

@@ -7,9 +7,14 @@ import {
 } from "@mantine/core";
 import classes from "./DetailsCourse.module.css";
 import { useLanguage } from "@pages/settings/component/language/LanguageProvider";
-import { IconCaretLeftFilled, IconCaretRightFilled } from "@tabler/icons-react";
+import {
+  IconCaretLeftFilled,
+  IconCaretRightFilled,
+  IconMinus,
+  IconPlus,
+} from "@tabler/icons-react";
 import { Link, useParams } from "react-router-dom";
-import { useDisclosure } from "@mantine/hooks";
+import { useCounter, useDisclosure } from "@mantine/hooks";
 import { useEffect, useState } from "react";
 import Model from "./Model";
 import { useDispatch, useSelector } from "react-redux";
@@ -40,6 +45,53 @@ export default function DetailsCourse() {
 
   console.log(course);
 
+  const [count, handlers] = useCounter(0, { min: 0 });
+
+  const counter = (
+    <>
+      <Box>
+        <Text ta={"center"} fz={17} fw={600}>
+          {language != "English"
+            ? "زيادة عدد المشاهدات"
+            : "Increase the number of views"}
+        </Text>
+        <Box
+          display={"flex"}
+          style={{ justifyContent: "space-between", gap: "1rem" }}
+          mt={10}
+        >
+          <Box display={"flex"} style={{ alignItems: "center", gap: "0px" }}>
+            <Button
+              className={classes.btnPlus}
+              onClick={handlers.increment}
+              color="green"
+            >
+              <IconPlus style={{ width: "15px", height: "15px" }} />
+            </Button>
+            <Text
+              c={computedColorScheme == "light" ? "" : "white"}
+              px={10}
+              py={5}
+            >
+              {" "}
+              {count}
+            </Text>
+            <Button
+              className={classes.btnMins}
+              onClick={handlers.decrement}
+              color="green"
+            >
+              <IconMinus style={{ width: "15px", height: "15px" }} />
+            </Button>
+          </Box>
+          <Button color="rgb(0,52,101)" px={30}>
+            {language != "English" ? "تأكيد" : "Confirm"}
+          </Button>
+        </Box>
+      </Box>
+    </>
+  );
+
   return (
     <Box w={"100%"} mb={50} className={classes.parent}>
       <Box display={"flex"} style={{ alignItems: "center" }}>
@@ -58,7 +110,8 @@ export default function DetailsCourse() {
           <Text
             c={computedColorScheme == "light" ? "black" : "white"}
             fw={600}
-            fz={22}>
+            fz={22}
+          >
             {language != "English" ? " الكورسات" : "The courses"}
           </Text>
         </Link>
@@ -79,7 +132,8 @@ export default function DetailsCourse() {
                       color: color,
                       fontSize: "15px",
                       fontWeight: 400,
-                    }}>
+                    }}
+                  >
                     {course?.title}
                   </span>
                 </Text>
@@ -90,7 +144,8 @@ export default function DetailsCourse() {
                       color: color,
                       fontSize: "15px",
                       fontWeight: 400,
-                    }}>
+                    }}
+                  >
                     {" "}
                     {course?.subject?.name}
                   </span>
@@ -102,7 +157,8 @@ export default function DetailsCourse() {
                       color: color,
                       fontSize: "15px",
                       fontWeight: 400,
-                    }}>
+                    }}
+                  >
                     {course?.teacher.user.firstName +
                       " " +
                       course?.teacher.user.lastName}
@@ -115,7 +171,8 @@ export default function DetailsCourse() {
                       color: color,
                       fontSize: "15px",
                       fontWeight: 400,
-                    }}>
+                    }}
+                  >
                     {" "}
                     {course?.year?.name}
                   </span>
@@ -127,7 +184,8 @@ export default function DetailsCourse() {
                       color: color,
                       fontSize: "15px",
                       fontWeight: 400,
-                    }}>
+                    }}
+                  >
                     {" "}
                     {language != "English" ? " ادبي " : " literary  "}{" "}
                   </span>
@@ -139,11 +197,13 @@ export default function DetailsCourse() {
                       color: color,
                       fontSize: "15px",
                       fontWeight: 400,
-                    }}>
+                    }}
+                  >
                     {" "}
                     {course && new Date(course.createAt).toLocaleDateString()}
                   </span>
                 </Text>
+                <Box>{counter}</Box>
               </Box>
               <Box>
                 <Box
@@ -153,7 +213,8 @@ export default function DetailsCourse() {
                     gap: "5px",
                     flexWrap: "wrap",
                     alignItems: "center",
-                  }}>
+                  }}
+                >
                   <Text fz={18} fw={500} c={"rgb(96,188,241)"}>
                     {language != "English" ? "  التقييم:" : " Evaluation:"}
                   </Text>
@@ -174,13 +235,15 @@ export default function DetailsCourse() {
             }}
             opened={!click ? opened : false}
             onClose={close}
-            centered>
+            centered
+          >
             <Text
               mb={20}
               ta={"center"}
               fz={17}
               fw={500}
-              c={computedColorScheme == "light" ? "" : "black"}>
+              c={computedColorScheme == "light" ? "" : "black"}
+            >
               {language != "English"
                 ? "   هل تريد حذف الكورس؟"
                 : "Do you want to delete the course?"}
@@ -190,7 +253,8 @@ export default function DetailsCourse() {
               <Button
                 onClick={() => setClick(true)}
                 variant="subtle"
-                c={"green"}>
+                c={"green"}
+              >
                 {language != "English" ? "نعم" : "Yes"}
               </Button>
               <Button onClick={close} variant="subtle" c={"red"}>
@@ -207,7 +271,8 @@ export default function DetailsCourse() {
               gap: "1rem",
               flexWrap: "wrap",
               alignItems: "center",
-            }}>
+            }}
+          >
             <Link to={`/lessons/${course.id}`} className={classes.lessonLink}>
               {language != "English" ? "دروس" : "Lesson"}
             </Link>
