@@ -20,13 +20,53 @@ export interface ILesson {
   quize?: IExam;
 }
 
+export interface IPayMentSendingData {
+  payMent: IPayMentDto;
+  studentId: number;
+}
+
+export interface IPayMentDto {
+  AmountCents: number;
+  Email: string;
+  FirstName: string;
+  LastName: string;
+  Phone: string;
+  City: string;
+  Cuur: string;
+  planId: number;
+  contentMonthIds: string[];
+}
+
+export interface ISubscriptionPlan {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  typeSubscription: number;
+  discount: number;
+  createdAt: string;
+  updatedAt: string;
+  coupons?: ICoupon[];
+}
+
+export interface ICoupon {
+  id: string;
+  couponText: string;
+  startDate: Date;
+  endDate: Date;
+  createAt: Date;
+  isRevoked: boolean;
+  couponPercntage: number;
+  isActive: boolean;
+  subscriptionPlanId: number;
+}
 export interface IProblem {
   id: string;
   name: string;
   description: string;
   email: string;
   phone: string;
-  isReading:boolean;
+  isReading: boolean;
 }
 export interface IExam {
   id: string;
@@ -71,7 +111,7 @@ export interface IFeedBack {
   isConfirmed: boolean;
   name: string;
   imgUrl: string;
-  user:IUser
+  user: IUser;
 }
 
 export interface IAddFeedBack {
@@ -138,4 +178,49 @@ export interface IAddCourseData {
   startDate: string;
   teacherId: number;
   price: number;
+}
+
+export interface IAddTeacher {
+  phone: string;
+  gender: string;
+  yearsOfExperience: string;
+  img: File | null;
+  email: string;
+  description: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  confirmedPassword: string;
+}
+
+export interface IMonthContent {
+  id: string;
+  title: string;
+  startDateMonth: Date;
+  endDateMonth: Date;
+}
+
+interface HistoryPaymentsStudentsDto {
+  id: string;
+  paymentDate: Date;
+  method: "Vodafone" | "paymop";
+  amount: number;
+  createdAt: Date;
+  updatedAt: Date;
+  status: string;
+  transactionId: string;
+  contentMonth: IMonthContent[];
+}
+
+
+export interface ISubscriptionStudent {
+  id: string; // Guid
+  startDate: Date;
+  endDate: Date;
+  createdAt: Date;
+  updatedAt: Date;
+  planId: number;
+  studentId: number;
+  subscriptionPlan?: ISubscriptionPlan;
+  historyPaymentsStudent?: HistoryPaymentsStudentsDto;
 }

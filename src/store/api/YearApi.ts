@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch, PayloadAction } from "@reduxjs/toolkit";
-import { getAllYear } from "@store/slices/YearSlice";
+import { getAllMonthContent, getAllYear } from "@store/slices/YearSlice";
 import { Api } from "@utilities/Api";
-import { IYear } from "@utilities/interfaces/PublicInterfce";
+import { IMonthContent, IYear } from "@utilities/interfaces/PublicInterfce";
 import { toast } from "react-toastify";
 
 export const GetAllYears = () => {
@@ -17,3 +17,14 @@ export const GetAllYears = () => {
 };
 
 
+
+export const GetAllMonthsApi = () => {
+  return async (dispatch: Dispatch<PayloadAction<IMonthContent[]>>) => {
+    try {
+      const { data } = await Api.get("ContentMonth/GetAll");
+      dispatch(getAllMonthContent(data));
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || "حدث خطأ اثناء التحميل");
+    }
+  };
+};

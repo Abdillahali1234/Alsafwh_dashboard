@@ -5,7 +5,9 @@
   border-radius: 6px;
   padding: 5px;
 }
-
+.errorField {
+  color: red;
+}
 .containerField {
   width: 100%;
   display: flex;
@@ -13,8 +15,8 @@
   gap: 1rem;
 }
 
-.widthField{
-    width: 50%;
+.widthField {
+  width: 50%;
 }
 
 .inputField:focus {
@@ -51,7 +53,7 @@
   .containerField {
     flex-wrap: wrap;
   }
-  .widthField{
+  .widthField {
     width: 100%;
-}
+  }
 }

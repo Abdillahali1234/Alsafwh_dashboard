@@ -77,15 +77,15 @@ export default function AppRouter() {
           element: !AuthModel ? <Navigate to="/login" /> : <StudentData />,
         },
         {
-          path: "/students/:id/add-subscription",
+          path: "/students/add-subscription/:id",
           element: !AuthModel ? <Navigate to="/login" /> : <AddSubscription />,
         },
         {
-          path: "/students/:id/student-courses",
+          path: "/students/student-courses/:id",
           element: !AuthModel ? <Navigate to="/login" /> : <StudentCourses />,
         },
         {
-          path: "/students/:id/student-subscriptions",
+          path: "/students/student-subscriptions/:id",
           element: !AuthModel ? (
             <Navigate to="/login" />
           ) : (
@@ -105,7 +105,7 @@ export default function AppRouter() {
           element: !AuthModel ? <Navigate to="/login" /> : <TeacherData />,
         },
         {
-          path: "/teachers/:id/teacher-courses",
+          path: "/teacher-courses/:teacherId",
           element: !AuthModel ? <Navigate to="/login" /> : <TeacherCourses />,
         },
         {

@@ -8,6 +8,9 @@ import TeacherSlice from "./slices/TeacherSlice";
 import LessonSlice from "./slices/LessonSlice";
 import ProblemSlice from "./slices/ProblemSlice";
 import FeedBackSlice from "./slices/FeedBackSlice";
+import StudentSlice from "./slices/StudentSlice";
+import PlanSlice from "./slices/PlanSlice";
+import SubscriptionSlice from "./slices/SubscriptionSlice";
 
 export const Store = configureStore({
   reducer: {
@@ -20,6 +23,9 @@ export const Store = configureStore({
     Lesson: LessonSlice,
     Problem: ProblemSlice,
     FeedBack: FeedBackSlice,
+    Student: StudentSlice,
+    Plan: PlanSlice,
+    Subscription:SubscriptionSlice
   },
 });
 

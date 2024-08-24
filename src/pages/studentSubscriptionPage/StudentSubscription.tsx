@@ -1,116 +1,21 @@
-import { Box, Divider, ScrollArea, Text, useComputedColorScheme } from "@mantine/core";
+import {
+  Box,
+  Divider,
+  ScrollArea,
+  Text,
+  useComputedColorScheme,
+} from "@mantine/core";
 import classes from "./StudentSubscription.module.css";
 import { useLanguage } from "@pages/settings/component/language/LanguageProvider";
 import { IconCaretLeftFilled, IconCaretRightFilled } from "@tabler/icons-react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@store/Store";
+import { useEffect } from "react";
+import { GetStudentApi } from "@store/api/StudentApi";
+import { GetAllSubscriptionStudentApi } from "@store/api/SubscriptionApi";
 
-
-const subscriptionAr = [
-  {
-    id: 1,
-    name: "احمد كامل",
-    subscriptionMonth: "شهر يونيو",
-    paymentMethod: "فودافون كاش",
-    totalAmount: "150 جنية مصري",
-  },
-  {
-    id: 2,
-    name: "احمد كامل",
-    subscriptionMonth: "شهر يونيو",
-    paymentMethod: "فودافون كاش",
-    totalAmount: "150 جنية مصري",
-  },
-  {
-    id: 3,
-    name: "احمد كامل",
-    subscriptionMonth: "شهر يونيو",
-    paymentMethod: "فودافون كاش",
-    totalAmount: "150 جنية مصري",
-  },
-  {
-    id: 4,
-    name: "احمد كامل",
-    subscriptionMonth: "شهر يونيو",
-    paymentMethod: "فودافون كاش",
-    totalAmount: "150 جنية مصري",
-  },
-  {
-    id: 5,
-    name: "احمد كامل",
-    subscriptionMonth: "شهر يونيو",
-    paymentMethod: "فودافون كاش",
-    totalAmount: "150 جنية مصري",
-  },
-  {
-    id: 6,
-    name: "احمد كامل",
-    subscriptionMonth: "شهر يونيو",
-    paymentMethod: "فودافون كاش",
-    totalAmount: "150 جنية مصري",
-  },
-  {
-    id: 7,
-    name: "احمد كامل",
-    subscriptionMonth: "شهر يونيو",
-    paymentMethod: "فودافون كاش",
-    totalAmount: "150 جنية مصري",
-  },
-  {
-    id: 8,
-    name: "احمد كامل",
-    subscriptionMonth: "شهر يونيو",
-    paymentMethod: "فودافون كاش",
-    totalAmount: "150 جنية مصري",
-  },
-];
-
-
-const subscriptionEn = [
-  {
-    id: 1,
-    name: "Ahmed Kamel",
-    subscriptionMonth: "June",
-    paymentMethod: "Vodafone Cash",
-    totalAmount: "150 Egyptian pounds",
-  },
-  {
-    id: 2,
-    name: "Ahmed Kamel",
-    subscriptionMonth: "June",
-    paymentMethod: "Vodafone Cash",
-    totalAmount: "150 Egyptian pounds",
-  },
-  {
-    id: 3,
-    name: "Ahmed Kamel",
-    subscriptionMonth: "June",
-    paymentMethod: "Vodafone Cash",
-    totalAmount: "150 Egyptian pounds",
-  },
-  {
-    id: 4,
-    name: "Ahmed Kamel",
-    subscriptionMonth: "June",
-    paymentMethod: "Vodafone Cash",
-    totalAmount: "150 Egyptian pounds",
-  },
-  {
-    id: 5,
-    name: "Ahmed Kamel",
-    subscriptionMonth: "June",
-    paymentMethod: "Vodafone Cash",
-    totalAmount: "150 Egyptian pounds",
-  },
-  {
-    id: 6,
-    name: "Ahmed Kamel",
-    subscriptionMonth: "June",
-    paymentMethod: "Vodafone Cash",
-    totalAmount: "150 Egyptian pounds",
-  },
-];
 export default function StudentSubscription() {
-  
   const computedColorScheme = useComputedColorScheme("light", {
     getInitialValueInEffect: true,
   });
@@ -120,57 +25,20 @@ export default function StudentSubscription() {
   // const color = computedColorScheme == "light" ? "" : "white";
   const lang = "English";
 
-  function data() {
-    if (language != lang) {
-      return subscriptionAr;
-    } else {
-      return subscriptionEn;
-    }
-  }
+  const { student } = useSelector((state: RootState) => state.Student);
+  const { subscriptionStudent } = useSelector(
+    (state: RootState) => state.Subscription
+  );
+  const dispatch = useDispatch<AppDispatch>();
+  const { id } = useParams();
 
-  const comp = data().map((item) => (
-    <>
-      <Box>
-        <Text my={15} fw={600} fz={17} c={"rgb(96,188,241)"}>
-          {language != lang ? "شهر الاشتراك: " : "Subscription month: "}{" "}
-          <span
-            style={{
-              color: computedColorScheme == "light" ? "black" : "white",
-              fontSize: "16px",
-              fontWeight: 400,
-            }}
-          >
-            {item.subscriptionMonth}
-          </span>
-        </Text>
-        <Text my={15} fw={600} fz={17} c={"rgb(96,188,241)"}>
-          {language != lang ? "طريقة السداد: " : "Payment method:"}{" "}
-          <span
-            style={{
-              color: computedColorScheme == "light" ? "black" : "white",
-              fontSize: "16px",
-              fontWeight: 400,
-            }}
-          >
-            {item.paymentMethod}
-          </span>
-        </Text>
-        <Text my={15} fw={600} fz={17} c={"rgb(96,188,241)"}>
-          {language != lang ? "  اجمالي المبلغ:" : "Total amount:"}{" "}
-          <span
-            style={{
-              color: computedColorScheme == "light" ? "black" : "white",
-              fontSize: "16px",
-              fontWeight: 400,
-            }}
-          >
-            {item.totalAmount}
-          </span>
-        </Text>
-      <Divider mt={50}/>
-      </Box>
-    </>
-  ));
+  useEffect(() => {
+    if (student) dispatch(GetAllSubscriptionStudentApi(student?.id));
+  }, [dispatch, student]);
+
+  useEffect(() => {
+    if (!student && id) dispatch(GetStudentApi(id));
+  }, [dispatch, id, student]);
 
   return (
     <Box w={"100%"} mb={50} className={classes.parent}>
@@ -187,24 +55,21 @@ export default function StudentSubscription() {
               stroke={2.0}
             />
           )}
-          <Link to={"/students/:id"} style={{textDecoration:"none"}}>
+          <Link to={"/students/:id"} style={{ textDecoration: "none" }}>
             <Box
               display={"flex"}
-              style={{ alignItems: "center", gap: "5px", flexWrap: "wrap" }}
-            >
+              style={{ alignItems: "center", gap: "5px", flexWrap: "wrap" }}>
               <Text
                 c={computedColorScheme == "light" ? "black" : "white"}
                 fw={600}
-                fz={22}
-              >
+                fz={22}>
                 {language != "English" ? " الطالب:" : "The student:"}
               </Text>
 
               <Text
                 c={computedColorScheme == "light" ? "black" : "white"}
                 fw={600}
-                fz={22}
-              >
+                fz={22}>
                 {language != "English" ? "احمد كامل" : "Ahmed Kamel"}
               </Text>
             </Box>
@@ -214,8 +79,7 @@ export default function StudentSubscription() {
         <Box>
           <Link
             to={"/students/:id/add-subscription"}
-            className={classes.subscriptionLink}
-          >
+            className={classes.subscriptionLink}>
             {language != "English" ? "اضافة اشتراك" : " Add a subscription"}
           </Link>
         </Box>
@@ -226,8 +90,7 @@ export default function StudentSubscription() {
           c={computedColorScheme == "light" ? "" : "white"}
           fw={700}
           fz={22}
-          ta={"center"}
-        >
+          ta={"center"}>
           {language != "English" ? "الاشتراكات" : "Subscriptions"}
         </Text>
       </Box>
@@ -238,14 +101,11 @@ export default function StudentSubscription() {
           name="subscription"
           required
           className={classes.selectField}
-          style={{ backgroundColor: back}}
-        >
+          style={{ backgroundColor: back }}>
           <option value={""} disabled hidden selected>
             {language != "English" ? "خطة الاشتراك " : "  Subscription plan"}
           </option>
-          <option value={1}>
-            {language != "English" ? " الكل " : " All"}
-          </option>
+          <option value={1}>{language != "English" ? " الكل " : " All"}</option>
           <option value={2}>
             {language != "English" ? " شهري " : "   Monthly"}
           </option>
@@ -264,8 +124,7 @@ export default function StudentSubscription() {
           h={300}
           type="always"
           offsetScrollbars
-          scrollHideDelay={0}
-        >
+          scrollHideDelay={0}>
           <Box
             className={classes.newSubs}
             mt={50}
@@ -275,9 +134,78 @@ export default function StudentSubscription() {
               gap: "3rem",
               flexWrap: "wrap",
             }}
-            dir={language != lang ? "" : "ltr"}
-          >
-            {comp}
+            dir={language != lang ? "" : "ltr"}>
+            {subscriptionStudent.length > 0 ? (
+              <>
+                {subscriptionStudent.map((sub) => (
+                  <>
+                    {" "}
+                    <Box>
+                      <Text my={15} fw={600} fz={17} c={"rgb(96,188,241)"}>
+                        {language != lang
+                          ? "شهر الاشتراك: "
+                          : "Subscription month: "}{" "}
+                        {sub.historyPaymentsStudent?.contentMonth.map(
+                          (month) => {
+                            return (
+                              <>
+                                <span
+                                  key={month.id}
+                                  style={{
+                                    color:
+                                      computedColorScheme == "light"
+                                        ? "black"
+                                        : "white",
+                                    fontSize: "16px",
+                                    fontWeight: 400,
+                                  }}>
+                                  {month.title}
+                                </span>
+                              </>
+                            );
+                          }
+                        )}
+                      </Text>
+                      <Text my={15} fw={600} fz={17} c={"rgb(96,188,241)"}>
+                        {language != lang
+                          ? "طريقة السداد: "
+                          : "Payment method:"}{" "}
+                        <span
+                          style={{
+                            color:
+                              computedColorScheme == "light"
+                                ? "black"
+                                : "white",
+                            fontSize: "16px",
+                            fontWeight: 400,
+                          }}>
+                          {sub.historyPaymentsStudent?.method}
+                        </span>
+                      </Text>
+                      <Text my={15} fw={600} fz={17} c={"rgb(96,188,241)"}>
+                        {language != lang
+                          ? "  اجمالي المبلغ:"
+                          : "Total amount:"}{" "}
+                        <span
+                          style={{
+                            color:
+                              computedColorScheme == "light"
+                                ? "black"
+                                : "white",
+                            fontSize: "16px",
+                            fontWeight: 400,
+                          }}>
+                          {sub.historyPaymentsStudent?.amount}
+                        </span>
+                      </Text>
+                      <Divider mt={50} />
+                    </Box>
+                  </>
+                ))}
+              </>
+            ) : (
+              <h1 className="NotFoundStyle">لا توجد اي اشتراكات لهذا الطالب</h1>
+            )}
           </Box>
         </ScrollArea>
       </Box>
@@ -289,19 +217,16 @@ export default function StudentSubscription() {
           justifyContent: "space-around",
           gap: "2rem",
           flexWrap: "wrap",
-        }}
-      >
+        }}>
         <Link
           to={"/students/:id/student-courses"}
-          className={classes.coursesLink}
-        >
+          className={classes.coursesLink}>
           {language != "English" ? "الكورسات " : "The courses"}
         </Link>
         <Link
           to={"/students/:id/student-subscriptions"}
           style={{ opacity: "0.5" }}
-          className={classes.subscriptions}
-        >
+          className={classes.subscriptions}>
           {language != "English" ? "الاشتراكات " : "Subscriptions"}
         </Link>
       </Box>

@@ -21,13 +21,11 @@ export default function Student() {
           computedColorScheme == "light"
             ? classes.studentCard
             : classes.studentCardDark
-        }
-      >
+        }>
         <Box
           mb={10}
           display={"flex"}
-          style={{ justifyContent: "space-between", alignItems: "center" }}
-        >
+          style={{ justifyContent: "space-between", alignItems: "center" }}>
           <Text fw={700} fz={17}>
             {language != "English" ? "الطلاب" : "Students"}
           </Text>
@@ -37,8 +35,7 @@ export default function Student() {
               computedColorScheme == "light"
                 ? classes.viewAllStudent
                 : classes.viewAllStudentDark
-            }
-          >
+            }>
             {language != "English" ? "مشاهدة الكل" : "View all"}
           </Link>
         </Box>
@@ -48,8 +45,7 @@ export default function Student() {
             computedColorScheme == "light"
               ? classes.studentBox
               : classes.studentBoxDark
-          }
-        >
+          }>
           <Box display={"flex"} style={{ alignItems: "center", gap: "5px" }}>
             <img
               src={image}
@@ -94,8 +90,7 @@ export default function Student() {
             computedColorScheme == "light"
               ? classes.studentBox
               : classes.studentBoxDark
-          }
-        >
+          }>
           <Box display={"flex"} style={{ alignItems: "center", gap: "5px" }}>
             <img
               src={image}
@@ -140,8 +135,7 @@ export default function Student() {
             computedColorScheme == "light"
               ? classes.studentBox
               : classes.studentBoxDark
-          }
-        >
+          }>
           <Box display={"flex"} style={{ alignItems: "center", gap: "5px" }}>
             <img
               src={image}
@@ -186,8 +180,7 @@ export default function Student() {
             computedColorScheme == "light"
               ? classes.studentBox
               : classes.studentBoxDark
-          }
-        >
+          }>
           <Box display={"flex"} style={{ alignItems: "center", gap: "5px" }}>
             <img
               src={image}

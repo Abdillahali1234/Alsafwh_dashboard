@@ -1,27 +1,28 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { ICourse, IFile, ITeacher } from "@utilities/interfaces/PublicInterfce";
+import { ICourse, ITeacher } from "@utilities/interfaces/PublicInterfce";
 
 export interface IStateTeacher {
   teachers: ITeacher[];
   teacher: ITeacher | null;
   isLoading: boolean;
-  Courses: ICourse[];
+  CoursesTeacher: ICourse[];
+  isAdded: boolean;
 }
-const storedData = localStorage.getItem("teacher");
 
 const initialState: IStateTeacher = {
   teachers: [],
-  teacher: storedData ? JSON.parse(storedData) : null,
+  teacher: null,
   isLoading: false,
-  Courses: [],
+  CoursesTeacher: [],
+  isAdded: false,
 };
 
 const TeacherSlice = createSlice({
   name: "teacher",
   initialState,
   reducers: {
-    getAllTeacher: (state, action) => {
+    getAllTeacher: (state, action: PayloadAction<ITeacher[]>) => {
       state.teachers = action.payload;
     },
     GetOneTeacher: (state, action: PayloadAction<ITeacher | null>) => {
@@ -30,13 +31,11 @@ const TeacherSlice = createSlice({
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
-    updateImg: (state, action: PayloadAction<IFile>) => {
-      if (action.payload != null && state.teacher) {
-        state.teacher.user.fileUploads = action.payload;
-      }
-    },
     getCoursesTeacher: (state, action: PayloadAction<ICourse[]>) => {
-      state.Courses = action.payload;
+      state.CoursesTeacher = action.payload;
+    },
+    addTeacher: (state, action: PayloadAction<boolean>) => {
+      state.isAdded = action.payload;
     },
   },
 });
@@ -45,7 +44,7 @@ export const {
   getAllTeacher,
   GetOneTeacher,
   setLoading,
-  updateImg,
   getCoursesTeacher,
+  addTeacher,
 } = TeacherSlice.actions;
 export default TeacherSlice.reducer;

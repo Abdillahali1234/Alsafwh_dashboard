@@ -47,3 +47,10 @@
   background-color: #4182F9;
 }
 
+.NotFoundStyle {
+  padding: 20px;
+  text-align: center;
+  gap: 10px;
+  color: rgb(34, 139, 230);
+  font-size: 40px;
+}
